@@ -1,0 +1,6 @@
+data/
+notebook/
+models/
+images/
+.env
+vector_database

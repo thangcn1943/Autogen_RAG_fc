@@ -1,0 +1,17 @@
+langchain==0.3.18
+langchain-community==0.3.17
+langchain-core==0.3.35
+langchain-text-splitters==0.3.6
+python-dotenv
+groq
+faiss-cpu
+pypdf
+datasets
+torch
+wandb
+streamlit
+openai
+sentence-transformers
+beautifulsoup4
+rank_bm25
+matplotlib
