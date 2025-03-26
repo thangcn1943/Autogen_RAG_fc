@@ -1,122 +1,179 @@
-import torch
-import time
-import streamlit as st
-import os
-from groq import Groq
 from dotenv import load_dotenv
+from prompts.prompt import qa_system_prompt, contextualize_q_system_prompt
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+import os
 import json
-from service.func_for_fc import rag_doctor_info, rag_medical, rag_price, book_appointment
+import time
+from langchain.chains import create_history_aware_retriever, create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_openai import ChatOpenAI
+from service.search_doc import hybrid_search
 import streamlit as st
 from openai import OpenAI
 import logging
+import uuid
+from service.func_for_fc import rag_service_price, rag_doctor_info, rag_product_price
+from service.message_stored import save_message, load_session_history
+
 logging.disable(logging.WARNING)
 
-load_dotenv('.env')
-groq_api_key = os.getenv("GROQ_API_KEY")
-# client = Groq(api_key=groq_api_key)
-# MODEL = os.getenv('MODEL')
+store = {}
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in store:
+        store[session_id] = load_session_history(session_id)
+    return store[session_id]
+
+# Ensure you save the chat history to the database when needed
+def save_all_sessions():
+    for session_id, chat_history in store.items():
+        for message in chat_history.messages:
+            save_message(session_id, message["role"], message["content"])
+
+import atexit
+atexit.register(save_all_sessions)
+
+load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
+# Lấy các khóa API và mô hình
 open_ai_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key = open_ai_key)
-MODEL = 'gpt-4o'
-EMBED_MODEL = os.getenv("EMBED_MODEL")
+MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
+EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
+
+session_id = uuid.uuid4()
+
 
 with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
-    tools = json.load(f)
+    function_schema = json.load(f)
+session_id = str(uuid.uuid4())
 
-def run_conversation(user_prompt):
-    messages = [
-        {
-            "role": "system",
-            "content": 'Xin chào! Tôi là trợ lý AI ve y te. Toi co the giai dap cac thac mac xung quanh benh vien va y te, hoac tao lich kham. Chuc ban mot ngay tot lanh!!!'
-        },
-        {
-            "role": "user",
-            "content": user_prompt,
-        }
-    ]
-    
-    response = client.chat.completions.create(
-        model=MODEL,
-        messages=messages,
-        tools=tools,
-        tool_choice="auto",
-        max_tokens=4096
+llm = ChatOpenAI(model=MODEL, temperature=0, api_key=open_ai_key)
+#Khoi tao prompt
+def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
+    contextualize_q_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", contextualize_q_system_prompt), 
+            MessagesPlaceholder("chat_history"), 
+            ("human", "{input}")
+        ]
     )
 
-    response_message = response.choices[0].message
-    tool_calls = response_message.tool_calls
+    qa_prompt = ChatPromptTemplate.from_messages(
+        [("system", qa_system_prompt), MessagesPlaceholder("chat_history"), ("human", "{input}")]
+    )
 
-    if tool_calls:
-        # try:
-        available_functions = {
-            tool['function']['name']: globals()[tool['function']['name']] for tool in tools
-        }
+    return contextualize_q_prompt, qa_prompt
 
-        messages.append(response_message)
-        for tool_call in tool_calls:
-            function_name = tool_call.function.name
-            print(function_name)
-            function_to_call = available_functions[function_name]
-            function_args = json.loads(tool_call.function.arguments)
-            function_response = function_to_call(**function_args)
-            
-            return function_response
-   
-    else:
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=messages,
-            max_tokens=4096
-        )
-        messages.append(response_message)
-        final_response = response.choices[0].message.content
+contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
+question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)     
 
-        return final_response
+# su ly function calling
+def process_llm_function_call(chat_history, user_prompt: str):
+    messages = []
+    for msg in chat_history.messages:
+        messages.append(msg)
+    # Thêm câu hỏi mới nhất
+    messages.append(
+        {"role": "user", "content": user_prompt}
+    ) 
+    # Gọi LLM với function calling
+    response = llm.predict_messages(
+        messages,
+        functions=function_schema
+    )
+    print(response)
+    return response
 
-def main():
+def execute_function_call(chat_history, user_prompt, function_schema: list):
+    r = process_llm_function_call(chat_history, user_prompt)
+    # if 'function_call' in r.additional_kwargs
+    available_functions = {tool['name']: globals()[tool['name']] 
+                            for tool in function_schema}
+    function_args = json.loads(r.additional_kwargs['function_call']['arguments'])
+    function_name = r.additional_kwargs['function_call']['name']
+    query = function_args['query']
+    print(function_name)
+    function_to_call = available_functions.get(function_name)
+    function_response = function_to_call(**function_args)
+    return function_response, query
 
-    st.title("THANGCN's AI Assistant")
+def process_user_query(chat_history, user_prompt: str, function_schema: list) -> str:
+    
+    function_response, query = execute_function_call(chat_history,user_prompt, function_schema)
+    
+    return _process_rag_chain(function_response, user_prompt, query)
 
-    # Khởi tạo session state nếu chưa có
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+# output va dau ra
+def invoke_and_save(session_id,conversational_rag_chain, input_text, query):
+    # Save the user question with role "human"
+    save_message(session_id, "user", input_text)
+    
+    result = conversational_rag_chain.invoke(
+        {"input": input_text},
+        config={"configurable": {"session_id": session_id}}
+    )["answer"]
 
-    # Hiển thị lịch sử hội thoại
+    # Save the AI answer with role "ai"
+    save_message(session_id, "assistant", result)
+    return result
+
+def _process_rag_chain(ensemble_retriever, user_prompt: str, query) -> str:
+    history_aware_retriever = create_history_aware_retriever(
+        llm, ensemble_retriever, contextualize_q_prompt
+    )
+    question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+    rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+    
+    conversational_rag_chain = RunnableWithMessageHistory(
+        rag_chain,
+        get_session_history,
+        input_messages_key="input",
+        history_messages_key="chat_history",
+        output_messages_key="answer"
+    )
+    
+    return invoke_and_save(session_id, conversational_rag_chain, user_prompt, query)
+
+def display_chat_history():
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    query = st.chat_input("Enter your query: ")
+def stream_response(answer: str) -> str:
+    full_res = ""
+    holder = st.empty()
+    for word in answer.split():
+        full_res += word + " "
+        time.sleep(0.1)
+        holder.markdown(full_res + "▌")
+    holder.markdown(full_res)
+    return full_res
 
-    start = time.time()
-    if query:
+def main():
+    st.title("THANGCN's AI Assistant")
+    
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
+    display_chat_history()
+
+    if query := st.chat_input("Enter your query: "):
+        start_time = time.time()
+        
         st.session_state.messages.append({"role": "user", "content": query})
-
         with st.chat_message("user"):
             st.markdown(query)
 
-        answer = run_conversation(query)
-
+        answer = process_user_query(load_session_history(session_id), query, function_schema)
+        
         with st.chat_message("assistant"):
-            full_res = ""
-            holder = st.empty()
-            for word in answer.split():
-                full_res += word + " "
-                time.sleep(0.1)
-                holder.markdown(full_res + "▌")
-            holder.markdown(full_res)
-
-        st.session_state.messages.append({"role": "assistant", "content": full_res})
-
-        end = time.time()
-        print("Time to process query:", end - start)
-
-    else:
-        print("Please enter your query")
-    end = time.time()
-    print("Time to process query: ", end-start)
-
+            full_response = stream_response(answer)
+        
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
+        
+        print(f"Time to process query: {time.time() - start_time:.2f}s")
 
 if __name__ == "__main__":
     main()

@@ -5,20 +5,25 @@ from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document  
 from dotenv import load_dotenv
 import os
-load_dotenv()
+load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 
-def hybrid_search(vectorstore,query, k):
+def hybrid_search(vectorstore, query: str, k: int) -> EnsembleRetriever:
+    """Create a hybrid retriever combining vector and keyword search."""
+    # Vector retriever
     retriever_vectordb = vectorstore.as_retriever(search_kwargs={"k": k})
-
+    
     documents = [
         Document(page_content=doc.page_content, metadata=doc.metadata)
-        for doc in vectorstore.similarity_search(query, k=100)
+        for doc in vectorstore.similarity_search(query, k=min(100, vectorstore.index.ntotal))
     ]
     keyword_retriever = BM25Retriever.from_documents(documents)
-    keyword_retriever.k =  k
-
-    ensemble_retriever = EnsembleRetriever(retrievers=[retriever_vectordb,keyword_retriever],weights=[0.5, 0.5])
-    return ensemble_retriever
+    keyword_retriever.k = k
+    
+    # Combine both retrievers
+    return EnsembleRetriever(
+        retrievers=[retriever_vectordb, keyword_retriever],
+        weights=[0.5, 0.5]
+    )
 
 def retrieve_and_re_rank(vector_db, query, k=10):
     cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")

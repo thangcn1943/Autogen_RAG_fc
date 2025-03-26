@@ -1,70 +1,44 @@
 [
     {
-        "type": "function",
-        "function": {
-            "name": "book_appointment",
-            "description": "Trích xuất thông tin từ câu hỏi của người dùng để đặt lịch khám bệnh, yêu cầu các thông tin như họ và tên, số điện thoại, ngày giờ khám, chuyên khoa, bác sĩ nếu có.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {
-                        "type": "string",
-                        "description": "Câu hỏi của người dùng về đặt lịch khám bệnh, có thể bao gồm thông tin về ngày giờ, bác sĩ, chuyên khoa."
-                    }
-                },
-                "required": ["query"]
-            }
+        "name": "rag_service_info",
+        "description": "Retrieves detailed information about one or more services based on the user's query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The service or category for which detailed information is being queried. This can refer to one or more services."
+                }
+            },
+            "required": ["query"]
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "rag_price",
-            "description": "Truy xuất thông tin về giá các dịch vụ y tế từ cơ sở dữ liệu vector hóa và cung cấp câu trả lời phù hợp.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "question": {
-                        "type": "string",
-                        "description": "Câu hỏi của người dùng liên quan đến giá dịch vụ y tế."
-                    }
-                },
-                "required": ["question"]
-            }
+        "name": "rag_product_info",
+        "description": "Retrieves detailed information about one or more products based on the user's query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The product or item for which detailed information is being queried. This can refer to one or more products."
+                }
+            },
+            "required": ["query"]
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "rag_doctor_info",
-            "description": "Truy xuất thông tin chi tiết về bác sĩ từ cơ sở dữ liệu vector hóa và cung cấp câu trả lời phù hợp.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "question": {
-                        "type": "string",
-                        "description": "Câu hỏi của người dùng về thông tin bác sĩ, bao gồm chuyên môn, kinh nghiệm, bệnh viện làm việc, v.v."
-                    }
-                },
-                "required": ["question"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "rag_medical",
-            "description": "Truy xuất thông tin y khoa từ cơ sở dữ liệu vector hóa để hỗ trợ người dùng về bệnh lý, triệu chứng, phác đồ điều trị, v.v.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "question": {
-                        "type": "string",
-                        "description": "Câu hỏi của người dùng về thông tin y khoa như bệnh lý, triệu chứng, phác đồ điều trị, thuốc, v.v."
-                    }
-                },
-                "required": ["question"]
-            }
+        "name": "rag_doctor_info",
+        "description": "Retrieves detailed information about one or more doctors based on the user's query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The name or specialty of the doctor the user is looking for. This can refer to one or more doctors."
+                }
+            },
+            "required": ["query"]
         }
     }
 ]
