@@ -1,0 +1,1736 @@
+WandB run initialized: Project - ft_for_rag, Run - llama3-fc
+/home/duyhoang/.local/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.13it/s]
+LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(128264, 4096)
+    (layers): ModuleList(
+      (0-31): 32 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+          (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+          (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+          (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+        (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+      )
+    )
+    (norm): LlamaRMSNorm((4096,), eps=1e-05)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=4096, out_features=128264, bias=False)
+)
+LlamaModel(
+  (embed_tokens): Embedding(128264, 4096)
+  (layers): ModuleList(
+    (0-31): 32 x LlamaDecoderLayer(
+      (self_attn): LlamaAttention(
+        (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+        (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+        (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+        (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+      )
+      (mlp): LlamaMLP(
+        (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+        (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+        (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+        (act_fn): SiLU()
+      )
+      (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+      (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+    )
+  )
+  (norm): LlamaRMSNorm((4096,), eps=1e-05)
+  (rotary_emb): LlamaRotaryEmbedding()
+)
+Embedding(128264, 4096)
+ModuleList(
+  (0-31): 32 x LlamaDecoderLayer(
+    (self_attn): LlamaAttention(
+      (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+      (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+      (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+      (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    )
+    (mlp): LlamaMLP(
+      (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+      (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+      (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+      (act_fn): SiLU()
+    )
+    (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+    (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  )
+)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaDecoderLayer(
+  (self_attn): LlamaAttention(
+    (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+    (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+    (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  )
+  (mlp): LlamaMLP(
+    (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+    (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+  (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+)
+LlamaAttention(
+  (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+  (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+  (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=1024, bias=False)
+Linear4bit(in_features=4096, out_features=4096, bias=False)
+LlamaMLP(
+  (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+  (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+  (act_fn): SiLU()
+)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=4096, out_features=14336, bias=False)
+Linear4bit(in_features=14336, out_features=4096, bias=False)
+SiLU()
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRMSNorm((4096,), eps=1e-05)
+LlamaRotaryEmbedding()
+Linear(in_features=4096, out_features=128264, bias=False)
+trainable params: 83,886,080 || all params: 8,114,212,864 || trainable%: 1.0338
+Using a sample size of 15000 for fine-tuning.
+Tokenizing train dataset:   0%|          | 0/15000 [00:00<?, ? examples/s]
+Dataset({
+    features: ['id', 'query', 'answers', 'tools'],
+    num_rows: 15000
+})
+{'id': 0, 'query': 'Where can I find live giveaways for beta access and games?', 'answers': '[{"name": "live_giveaways_by_type", "arguments": {"type": "beta"}}, {"name": "live_giveaways_by_type", "arguments": {"type": "game"}}]', 'tools': '[{"name": "live_giveaways_by_type", "description": "Retrieve live giveaways from the GamerPower API based on the specified type.", "parameters": {"type": {"description": "The type of giveaways to retrieve (e.g., game, loot, beta).", "type": "str", "default": "game"}}}]'}
+Dataset({
+    features: ['id', 'query', 'answers', 'tools'],
+    num_rows: 15000
+})
+{'id': 0, 'query': 'Where can I find live giveaways for beta access and games?', 'answers': '[{"name": "live_giveaways_by_type", "arguments": {"type": "beta"}}, {"name": "live_giveaways_by_type", "arguments": {"type": "game"}}]', 'tools': '[{"name": "live_giveaways_by_type", "description": "Retrieve live giveaways from the GamerPower API based on the specified type.", "parameters": {"type": {"description": "The type of giveaways to retrieve (e.g., game, loot, beta).", "type": "str", "default": "game"}}}]'}
+{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>
+
+'+ message['content'] | trim + '<|eot_id|>' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>
+
+' }}{% endif %}
+{
+%
+
+s
+e
+t
+
+l
+o
+o
+p
+_
+m
+e
+s
+s
+a
+g
+e
+s
+
+=
+
+m
+e
+s
+s
+a
+g
+e
+s
+
+%
+}
+{
+%
+
+f
+o
+r
+
+m
+e
+s
+s
+a
+g
+e
+
+i
+n
+
+l
+o
+o
+p
+_
+m
+e
+s
+s
+a
+g
+e
+s
+
+%
+}
+{
+%
+
+s
+e
+t
+
+c
+o
+n
+t
+e
+n
+t
+
+=
+
+'
+<
+|
+s
+t
+a
+r
+t
+_
+h
+e
+a
+d
+e
+r
+_
+i
+d
+|
+>
+'
+
++
+
+m
+e
+s
+s
+a
+g
+e
+[
+'
+r
+o
+l
+e
+'
+]
+
++
+
+'
+<
+|
+e
+n
+d
+_
+h
+e
+a
+d
+e
+r
+_
+i
+d
+|
+>
+
+
+
+
+'
++
+
+m
+e
+s
+s
+a
+g
+e
+[
+'
+c
+o
+n
+t
+e
+n
+t
+'
+]
+
+|
+
+t
+r
+i
+m
+
++
+
+'
+<
+|
+e
+o
+t
+_
+i
+d
+|
+>
+'
+
+%
+}
+{
+%
+
+i
+f
+
+l
+o
+o
+p
+.
+i
+n
+d
+e
+x
+0
+
+=
+=
+
+0
+
+%
+}
+{
+%
+
+s
+e
+t
+
+c
+o
+n
+t
+e
+n
+t
+
+=
+
+b
+o
+s
+_
+t
+o
+k
+e
+n
+
++
+
+c
+o
+n
+t
+e
+n
+t
+
+%
+}
+{
+%
+
+e
+n
+d
+i
+f
+
+%
+}
+{
+{
+
+c
+o
+n
+t
+e
+n
+t
+
+}
+}
+{
+%
+
+e
+n
+d
+f
+o
+r
+
+%
+}
+{
+%
+
+i
+f
+
+a
+d
+d
+_
+g
+e
+n
+e
+r
+a
+t
+i
+o
+n
+_
+p
+r
+o
+m
+p
+t
+
+%
+}
+{
+{
+
+'
+<
+|
+s
+t
+a
+r
+t
+_
+h
+e
+a
+d
+e
+r
+_
+i
+d
+|
+>
+a
+s
+s
+i
+s
+t
+a
+n
+t
+<
+|
+e
+n
+d
+_
+h
+e
+a
+d
+e
+r
+_
+i
+d
+|
+>
+
+
+
+
+'
+
+}
+}
+{
+%
+
+e
+n
+d
+i
+f
+
+%
+}
+{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>
+
+'+ message['content'] | trim + '<|eot_id|>' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>
+
+' }}{% endif %}
+Map: 100%|██████████| 15000/15000 [00:00<00:00, 37370.66 examples/s]
+<|start_header_id|>system<|end_header_id|>
+
+You are a helpful assistant with tools. Use these when needed:
+[{"name": "live_giveaways_by_type", "description": "Retrieve live giveaways from the GamerPower API based on the specified type.", "parameters": {"type": {"description": "The type of giveaways to retrieve (e.g., game, loot, beta).", "type": "str", "default": "game"}}}]<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+
+Where can I find live giveaways for beta access and games?<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+
+[{"name": "live_giveaways_by_type", "arguments": {"type": "beta"}}, {"name": "live_giveaways_by_type", "arguments": {"type": "game"}}]<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+Converting train dataset to ChatML: 100%|██████████| 15000/15000 [00:00<00:00, 55882.33 examples/s]
+Applying chat template to train dataset: 100%|██████████| 15000/15000 [00:00<00:00, 57880.62 examples/s]
+Tokenizing train dataset: 100%|██████████| 15000/15000 [00:10<00:00, 1487.89 examples/s]
+Truncating train dataset: 100%|██████████| 15000/15000 [00:00<00:00, 94210.69 examples/s]
+Applying chat template to train dataset: 100%|██████████| 15000/15000 [00:00<00:00, 62803.84 examples/s]
+Tokenizing train dataset: 100%|██████████| 15000/15000 [00:09<00:00, 1511.26 examples/s]
+Truncating train dataset: 100%|██████████| 15000/15000 [00:00<00:00, 102318.56 examples/s]
+No label_names provided for model class `PeftModel`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModel`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModel`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+
+
+GPU = NVIDIA GeForce RTX 4090. Max memory = 23.65 GB.
+5.986 GB of memory reserved.
+No label_names provided for model class `PeftModel`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+GPU = NVIDIA GeForce RTX 4090. Max memory = 23.65 GB.
+9.904 GB of memory reserved.

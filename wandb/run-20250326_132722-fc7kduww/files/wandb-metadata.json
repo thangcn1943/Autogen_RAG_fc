@@ -1,0 +1,42 @@
+{
+  "os":  "Linux-6.8.0-52-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.10.16",
+  "startedAt":  "2025-03-26T06:27:22.176854Z",
+  "program":  "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py",
+  "codePath":  "training/fine_tune_embed.py",
+  "git":  {
+    "remote":  "https://github.com/thangcn1943/Autogen_RAG_fc.git",
+    "commit":  "3829285d7ac4dad116f53456929a8220e3db5be7"
+  },
+  "email":  "thang19431@gmail.com",
+  "root":  "/mnt/data1tb/thangcn/datnv2",
+  "host":  "sotatek-Z590-GAMING-X",
+  "executable":  "/home/duyhoang/miniconda3/envs/thangcn/bin/python3",
+  "codePathLocal":  "training/fine_tune_embed.py",
+  "cpu_count":  6,
+  "cpu_count_logical":  12,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "490577010688",
+      "used":  "390874349568"
+    }
+  },
+  "memory":  {
+    "total":  "33517256704"
+  },
+  "cpu":  {
+    "count":  6,
+    "countLogical":  12
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}

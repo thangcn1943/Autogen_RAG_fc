@@ -16,14 +16,14 @@ from langchain.chains import create_history_aware_retriever, create_retrieval_ch
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory 
-import uuid
+from langchain_core.runnables import RunnableLambda
+# import uuid
 import atexit
-
 from service.message_stored import load_session_history, get_db, save_message
 
 store = {}
-session_id = 'thangcn19'
-print(session_id)
+session_id = 'thangcn1943'
+
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
         store[session_id] = load_session_history(session_id)
@@ -33,10 +33,12 @@ def save_all_sessions():
     for session_id, chat_history in store.items():
         for message in chat_history.messages:
             save_message(session_id, message["role"], message["content"])
+
 atexit.register(save_all_sessions)
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
+# groq_api_key = os.getenv("GROQ_API_KEY")
 MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
 EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
@@ -44,6 +46,8 @@ with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
     function_schema = json.load(f)
 
 llm = ChatOpenAI(model=MODEL, temperature=0, api_key=open_ai_key)
+# llm = ChatGroq(model = "llama3-70b-8192", temperature=0,api_key = groq_api_key)
+
 
 def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
@@ -60,8 +64,10 @@ def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 
     return contextualize_q_prompt, qa_prompt
 
+
 contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt) 
+
 
 def process_llm_function_call(chat_history, user_prompt: str):
     messages = []
@@ -78,10 +84,12 @@ def process_llm_function_call(chat_history, user_prompt: str):
     )
     return response
 
+
 def display_chat_history():
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
+
 
 def stream_response(answer: str) -> str:
     full_res = ""
@@ -93,12 +101,30 @@ def stream_response(answer: str) -> str:
     holder.markdown(full_res)
     return full_res
 
+
+def print_retrieved_docs(input_dict):
+    # Lấy documents đã retrieval
+    retrieved_docs = input_dict.get("context", [])
+    
+    # In thông tin về documents
+    print("\n=== RETRIEVED DOCUMENTS ===")
+    for i, doc in enumerate(retrieved_docs):
+        print(f"\nDocument {i+1}:")
+        print(f"Source: {doc.metadata.get('source', 'Unknown')}")
+        print(f"Content: {doc.page_content[:200]}...")  # In 200 ký tự đầu tiên
+    
+    # Trả về input_dict nguyên vẹn để tiếp tục xử lý
+    return input_dict
+
+
 def main():
     st.title("THANGCN's AI Assistant")
-    
+    chat_history = load_session_history(session_id)
+    st.session_state.messages = chat_history.messages
+    st.session_state.session_id = session_id
     if "messages" not in st.session_state:
         st.session_state.messages = []
-
+    
     display_chat_history()
 
     if user_prompt := st.chat_input("Enter your user_prompt: "):
@@ -116,6 +142,8 @@ def main():
                                 for tool in function_schema}
             function_args = json.loads(r.additional_kwargs['function_call']['arguments'])
             function_name = r.additional_kwargs['function_call']['name']
+            print(f"Function name: {function_name}")
+            print(f"Function args: {function_args}")
             function_to_call = available_functions.get(function_name)
             function_response = function_to_call(**function_args)
             Is_call_function = True
@@ -139,6 +167,7 @@ def main():
 
             rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
+            rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
 
             store = {}
             def get_session_history(session_id: str) -> BaseChatMessageHistory:
@@ -147,7 +176,7 @@ def main():
                 return store[session_id]
 
             conversational_rag_chain = RunnableWithMessageHistory(
-                rag_chain,
+                rag_chain_with_print,
                 get_session_history,
                 input_messages_key="input",
                 history_messages_key="chat_history",

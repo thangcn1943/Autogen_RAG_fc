@@ -50,7 +50,7 @@ ir_evaluator = InformationRetrievalEvaluator(
     truncate_dim=768, 
     score_functions={"cosine": cos_sim},
 )
-model_id = 'nampham1106/bkcare-embedding'
+model_id = 'intfloat/multilingual-e5-large'
 
 model = SentenceTransformer(
     model_id,
@@ -59,10 +59,11 @@ model = SentenceTransformer(
 )
 inner_train_loss = MultipleNegativesRankingLoss(model)
 
+print(ir_evaluator(model))
 args = SentenceTransformerTrainingArguments(
-    output_dir="/mnt/data1tb/thangcn/datnv2/models/embed/bkcare-embed-v2", 
-    num_train_epochs=10,                       
-    per_device_train_batch_size=100,            
+    output_dir="/mnt/data1tb/thangcn/datnv2/models/embed/multilingual-e5-large-v2", 
+    num_train_epochs=5,                       
+    per_device_train_batch_size=5,            
     gradient_accumulation_steps=1,          
     per_device_eval_batch_size=1,             
     warmup_ratio=0.1,                          
@@ -93,7 +94,7 @@ trainer = SentenceTransformerTrainer(
 trainer.train()
 
 trainer.save_model()
-trainer.push_to_hub('bkcare-embed-v2')
+trainer.push_to_hub('multilingual-e5-large-v2')
 fine_tuned_model = SentenceTransformer(
     args.output_dir, device="cuda" if torch.cuda.is_available() else "cpu"
 )

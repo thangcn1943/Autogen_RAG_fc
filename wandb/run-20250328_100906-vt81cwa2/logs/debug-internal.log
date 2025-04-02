@@ -1,0 +1,34 @@
+{"time":"2025-03-28T10:09:06.412442456+07:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/mnt/data1tb/thangcn/datnv2/wandb/run-20250328_100906-vt81cwa2/logs/debug-core.log"}
+{"time":"2025-03-28T10:09:06.515803188+07:00","level":"INFO","msg":"created new stream","id":"vt81cwa2"}
+{"time":"2025-03-28T10:09:06.515837048+07:00","level":"INFO","msg":"stream: started","id":"vt81cwa2"}
+{"time":"2025-03-28T10:09:06.515963107+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"vt81cwa2"}
+{"time":"2025-03-28T10:09:06.516066165+07:00","level":"INFO","msg":"handler: started","stream_id":"vt81cwa2"}
+{"time":"2025-03-28T10:09:06.516082027+07:00","level":"INFO","msg":"sender: started","stream_id":"vt81cwa2"}
+{"time":"2025-03-28T10:09:06.895247632+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-28T10:09:07.092935366+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:09:09.803492409+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:09:11.464638485+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:10:59.814494883+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:21:55.464763601+07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/thang19431-hanoi-university-of-science-and-technology/ft_for_rag/vt81cwa2/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: read udp 127.0.0.1:46937->127.0.0.53:53: i/o timeout"}
+{"time":"2025-03-28T10:34:49.525369266+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:34:49.565770659+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:34:49.565798658+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:34:49.565803138+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:34:49.565806406+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:34:49.565820903+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:34:51.672347019+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:35:37.517512588+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:35:41.950020405+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:35:44.454182125+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:35:44.455922705+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:35:46.695034089+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:35:46.704658334+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:36:05.518562764+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:36:06.145021026+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:36:07.768747069+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:36:07.797766428+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:36:09.629461803+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:36:15.506135567+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:36:20.483073577+07:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-28T10:36:20.524068274+07:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-28T10:36:21.648998713+07:00","level":"INFO","msg":"Resuming system monitor"}

@@ -1,0 +1,15 @@
+{"time":"2025-03-26T11:16:11.671401639+07:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/mnt/data1tb/thangcn/datnv2/wandb/run-20250326_111611-gsa44gn7/logs/debug-core.log"}
+{"time":"2025-03-26T11:16:11.775050163+07:00","level":"INFO","msg":"created new stream","id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:11.775125862+07:00","level":"INFO","msg":"stream: started","id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:11.775195628+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:11.77523073+07:00","level":"INFO","msg":"handler: started","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:11.775220022+07:00","level":"INFO","msg":"sender: started","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:12.219482387+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-26T11:16:12.682442181+07:00","level":"INFO","msg":"stream: closing","id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:12.91864825+07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-26T11:16:12.91901303+07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-26T11:16:13.78754843+07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-26T11:16:14.152607218+07:00","level":"INFO","msg":"handler: closed","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:14.152709449+07:00","level":"INFO","msg":"sender: closed","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:14.152696874+07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gsa44gn7"}
+{"time":"2025-03-26T11:16:14.152898334+07:00","level":"INFO","msg":"stream: closed","id":"gsa44gn7"}

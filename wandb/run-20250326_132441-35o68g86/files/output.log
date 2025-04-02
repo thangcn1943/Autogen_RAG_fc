@@ -1,0 +1,146 @@
+  0%|                                                                                                                                                               | 0/2740 [00:00<?, ?it/s]Column 'positive' is at index 0, whereas a column with this name is usually expected at index 1. Note that the column order can be important for some losses, e.g. MultipleNegativesRankingLoss will always consider the first column as the anchor and the second as the positive, regardless of the dataset column names. Consider renaming the columns to match the expected order, e.g.:
+dataset = dataset.select_columns(['anchor', 'positive', 'negative'])
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 94, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/trainer.py", line 405, in compute_loss
+    loss = loss_fn(features, labels)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in forward
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in <listcomp>
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 690, in forward
+    input = module(input, **module_kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/models/Transformer.py", line 442, in forward
+    output_states = self.auto_model(**trans_features, **kwargs, return_dict=False)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 977, in forward
+    encoder_outputs = self.encoder(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 632, in forward
+    layer_outputs = layer_module(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 563, in forward
+    layer_output = apply_chunking_to_forward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/pytorch_utils.py", line 261, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 576, in feed_forward_chunk
+    layer_output = self.output(intermediate_output, attention_output)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 487, in forward
+    hidden_states = self.dense(hidden_states)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 80.00 MiB. GPU 0 has a total capacity of 23.65 GiB of which 16.31 MiB is free. Including non-PyTorch memory, this process has 23.60 GiB memory in use. Of the allocated memory 23.12 GiB is allocated by PyTorch, and 27.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 94, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/trainer.py", line 405, in compute_loss
+    loss = loss_fn(features, labels)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in forward
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in <listcomp>
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 690, in forward
+    input = module(input, **module_kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/models/Transformer.py", line 442, in forward
+    output_states = self.auto_model(**trans_features, **kwargs, return_dict=False)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 977, in forward
+    encoder_outputs = self.encoder(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 632, in forward
+    layer_outputs = layer_module(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 563, in forward
+    layer_output = apply_chunking_to_forward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/pytorch_utils.py", line 261, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 576, in feed_forward_chunk
+    layer_output = self.output(intermediate_output, attention_output)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 487, in forward
+    hidden_states = self.dense(hidden_states)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 80.00 MiB. GPU 0 has a total capacity of 23.65 GiB of which 16.31 MiB is free. Including non-PyTorch memory, this process has 23.60 GiB memory in use. Of the allocated memory 23.12 GiB is allocated by PyTorch, and 27.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

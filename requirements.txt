@@ -15,4 +15,7 @@ sentence-transformers
 beautifulsoup4
 rank_bm25
 matplotlib
-ag2[openai]
+bitsandbytes
+peft
+trl
+unsloth

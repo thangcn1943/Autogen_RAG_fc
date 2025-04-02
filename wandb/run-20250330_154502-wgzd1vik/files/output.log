@@ -1,0 +1,27 @@
+WandB run initialized: Project - ft_for_rag, Run - llama3-fc-303
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+/home/duyhoang/.local/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+🦥 Unsloth Zoo will now patch everything to make training faster!
+==((====))==  Unsloth 2025.3.19: Fast Llama patching. Transformers: 4.49.0.
+   \\   /|    NVIDIA GeForce RTX 4090. Num GPUs = 1. Max memory: 23.65 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.6.0+cu124. CUDA: 8.9. CUDA Toolkit: 12.4. Triton: 3.2.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.29.post3. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.17it/s]
+Unsloth 2025.3.19 patched 32 layers with 32 QKV layers, 32 O layers and 32 MLP layers.
+Using the latest cached version of the dataset since Salesforce/xlam-function-calling-60k couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'dataset' at /home/duyhoang/.cache/huggingface/datasets/Salesforce___xlam-function-calling-60k/dataset/0.0.0/26d14ebfe18b1f7b524bd39b404b50af5dc97866 (last modified on Fri Mar 28 10:36:15 2025).
+Using a sample size of 15000 for fine-tuning.
+GPU = NVIDIA GeForce RTX 4090. Max memory = 23.65 GB.
+15.316 GB of memory reserved.
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 15,000 | Num Epochs = 1 | Total steps = 187
+O^O/ \_/ \    Batch size per device = 40 | Gradient accumulation steps = 2
+\        /    Data Parallel GPUs = 1 | Total batch size (40 x 2 x 1) = 80
+ "-____-"     Trainable parameters = 83,886,080/8,114,147,328 (1.03% trained)
+[34m[1mwandb[0m: [33mWARNING[0m The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+Unsloth: Tokenizing ["text"] (num_proc=2): 100%|██████████| 15000/15000 [00:05<00:00, 2612.22 examples/s]
+GPU = NVIDIA GeForce RTX 4090. Max memory = 23.65 GB.
+22.926 GB of memory reserved.
