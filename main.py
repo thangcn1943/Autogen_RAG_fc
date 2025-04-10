@@ -191,6 +191,8 @@ def main():
 
             answer = invoke_and_save(session_id, user_prompt)
         else:
+            save_message(session_id, "user", user_prompt)
+            save_message(session_id, "assistant", function_response)
             answer = function_response
         
         with st.chat_message("assistant"):
