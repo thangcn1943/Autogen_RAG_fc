@@ -6,3 +6,5 @@ images/
 vector_database
 unsloth_compiled_cache/
 outputs/
+evaluation/
+__pycache__/

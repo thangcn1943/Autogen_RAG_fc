@@ -154,26 +154,13 @@ def main():
         if Is_call_function:
         # Prompt để ngữ cảnh hóa câu hỏi
 
-            contextualize_q_prompt = ChatPromptTemplate.from_messages(
-                [("system", contextualize_q_system_prompt), MessagesPlaceholder("chat_history"), ("human", "{input}")]
-            )
             history_aware_retriever = create_history_aware_retriever(llm, function_response, contextualize_q_prompt)
-
-            qa_prompt = ChatPromptTemplate.from_messages(
-                [("system", qa_system_prompt), MessagesPlaceholder("chat_history"), ("human", "{input}")]
-            )
 
             question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
             rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
             rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
-
-            store = {}
-            def get_session_history(session_id: str) -> BaseChatMessageHistory:
-                if session_id not in store:
-                    store[session_id] = ChatMessageHistory()
-                return store[session_id]
 
             conversational_rag_chain = RunnableWithMessageHistory(
                 rag_chain_with_print,
