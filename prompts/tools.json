@@ -40,5 +40,63 @@
             },
             "required": ["query"]
         }
+    },
+    {
+        "name": "qa_medical",
+        "description": "Answers medical-related questions based on the user's query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The medical-related question the user is asking."
+                }
+            },
+            "required": ["query"]
+        }
+    },
+    {
+        "name": "qa_symptom",
+        "description": "Answers questions related to symptoms based on the user's query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The symptom or condition the user is asking about."
+                }
+            },
+            "required": ["query"]
+        }
+    },  
+    {
+        "name": "book_appointment",
+        "description": "Books an appointment for a user with specified details.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the person booking the appointment."
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "The phone number of the person booking the appointment."
+                },
+                "date": {
+                    "type": "string",
+                    "description": "The date for the appointment in YYYY-MM-DD format."
+                },
+                "time": {
+                    "type": "string",
+                    "description": "The time for the appointment in HH:MM format."
+                },
+                "specialty": {
+                    "type": "string",
+                    "description": "The specialty or type of service for which the appointment is being booked."
+                }
+            },
+            "required": ["name", "phone", "date", "time", "specialty"]
+        }
     }
 ]

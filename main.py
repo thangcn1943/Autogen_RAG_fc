@@ -7,7 +7,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_openai import ChatOpenAI
-from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info
+from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment
 import os
 import json
 import time
@@ -20,6 +20,12 @@ from langchain_core.runnables import RunnableLambda
 # import uuid
 import atexit
 from service.message_stored import load_session_history, get_db, save_message
+
+load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
+open_ai_key = os.getenv("OPENAI_API_KEY")
+# groq_api_key = os.getenv("GROQ_API_KEY")
+MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
+EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
 session_id = 'thangcn1943'
@@ -35,12 +41,6 @@ def save_all_sessions():
             save_message(session_id, message["role"], message["content"])
 
 atexit.register(save_all_sessions)
-
-load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
-open_ai_key = os.getenv("OPENAI_API_KEY")
-# groq_api_key = os.getenv("GROQ_API_KEY")
-MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
-EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
     function_schema = json.load(f)
@@ -66,8 +66,6 @@ def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 
 
 contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
-question_answer_chain = create_stuff_documents_chain(llm, qa_prompt) 
-
 
 def process_llm_function_call(chat_history, user_prompt: str):
     messages = []
@@ -134,6 +132,7 @@ def main():
         with st.chat_message("user"):
             st.markdown(user_prompt)
         r = process_llm_function_call(load_session_history(session_id), user_prompt)
+        print(r)
         answer = None
         Is_call_function = False
         # Kiểm tra xem có function_call trong response không
@@ -152,44 +151,47 @@ def main():
             print("Không có function call trong response")
             function_response = r.content
         if Is_call_function:
-        # Prompt để ngữ cảnh hóa câu hỏi
+            if function_name == "book_appointment":
+                save_message(session_id, "user", user_prompt)
+                save_message(session_id, "assistant", function_response)
+                answer = function_response
+            else:
+                history_aware_retriever = create_history_aware_retriever(llm, function_response, contextualize_q_prompt)
 
-            history_aware_retriever = create_history_aware_retriever(llm, function_response, contextualize_q_prompt)
+                question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
-            question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+                rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
-            rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+                rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
 
-            rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
+                conversational_rag_chain = RunnableWithMessageHistory(
+                    rag_chain_with_print,
+                    get_session_history,
+                    input_messages_key="input",
+                    history_messages_key="chat_history",
+                    output_messages_key="answer",
+                )
 
-            conversational_rag_chain = RunnableWithMessageHistory(
-                rag_chain_with_print,
-                get_session_history,
-                input_messages_key="input",
-                history_messages_key="chat_history",
-                output_messages_key="answer",
-            )
+                history_conversation = f"""
+                    History conversation:\n
+                    """
+                for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
+                    history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
 
-            history_conversation = f"""
-                History conversation:\n
-                """
-            for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -5):]:
-                history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
+                def invoke_and_save(session_id, input_text):
 
-            def invoke_and_save(session_id, input_text):
+                    # Save the user question with role "human"
+                    save_message(session_id, "user", input_text)
+                    
+                    result = conversational_rag_chain.invoke(
+                        {"input": history_conversation + '\nQuery: ' + input_text},
+                        config={"configurable": {"session_id": session_id}}
+                    )["answer"]
+                    # Save the AI answer with role "ai"
+                    save_message(session_id, "assistant", result)
+                    return result
 
-                # Save the user question with role "human"
-                save_message(session_id, "user", input_text)
-                
-                result = conversational_rag_chain.invoke(
-                    {"input": history_conversation + '\nQuery: ' + input_text},
-                    config={"configurable": {"session_id": session_id}}
-                )["answer"]
-                # Save the AI answer with role "ai"
-                save_message(session_id, "assistant", result)
-                return result
-
-            answer = invoke_and_save(session_id, user_prompt)
+                answer = invoke_and_save(session_id, user_prompt)
         else:
             save_message(session_id, "user", user_prompt)
             save_message(session_id, "assistant", function_response)
