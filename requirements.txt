@@ -19,3 +19,4 @@ bitsandbytes
 peft
 trl
 unsloth
+vllm==0.8.4

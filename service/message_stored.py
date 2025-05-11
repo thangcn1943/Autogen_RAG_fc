@@ -66,3 +66,4 @@ def load_session_history(session_id: str) -> BaseChatMessageHistory:
         db.close()
 
     return chat_history
+

@@ -7,37 +7,57 @@ from dotenv import load_dotenv
 import os
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 
-def hybrid_search(vectorstore, query: str, k: int) -> EnsembleRetriever:
-    """Create a hybrid retriever combining vector and keyword search."""
-    # Vector retriever
-    retriever_vectordb = vectorstore.as_retriever(search_kwargs={"k": k})
+class ReRankerRetriever(BaseRetriever):
+    def __init__(self, ensemble_retriever: EnsembleRetriever, reranker: CrossEncoder, top_k: int = 20, rerank_k: int = 10):
+        super().__init__()
+        self.ensemble_retriever = ensemble_retriever  # Đã sửa dấu phẩy thừa
+        self.reranker = reranker
+        self.top_k = top_k
+        self.rerank_k = rerank_k 
     
+    def _get_relevant_documents(self, query: str, *, run_manager=None) -> List[Document]:
+        # Lấy documents từ ensemble retriever
+        docs = self.ensemble_retriever.get_relevant_documents(query, top_k=self.top_k)
+        
+        # Tạo cặp (query, document) để re-rank
+        pairs = [(query, doc.page_content) for doc in docs]
+   
+        # Tính điểm re-ranking
+        rerank_scores = self.reranker.predict(pairs)
+ 
+        # Gán điểm vào metadata
+        for doc, score in zip(docs, rerank_scores):
+            doc.metadata["rerank_score"] = float(score)  # Chuyển sang float để JSON serializable
+    
+        # Sắp xếp và trả về top documents
+        sorted_docs = sorted(docs, key=lambda x: x.metadata["rerank_score"], reverse=True)
+        return sorted_docs[:self.rerank_k]
+
+def hybrid_search(vectorstore, query: str, k: int) -> ReRankerRetriever:
+    """Create a hybrid retriever with re-ranking"""
+    # Vector retriever
+    retriever_vectordb = vectorstore.as_retriever(
+        search_kwargs={"k": min(10, vectorstore.index.ntotal)}
+    )
+    
+    # Keyword retriever
     documents = [
         Document(page_content=doc.page_content, metadata=doc.metadata)
-        for doc in vectorstore.similarity_search(query, k=min(100, vectorstore.index.ntotal))
+        for doc in vectorstore.similarity_search(query, k=min(10, vectorstore.index.ntotal))
     ]
     keyword_retriever = BM25Retriever.from_documents(documents)
     keyword_retriever.k = k
-    
-    # Combine both retrievers
-    return EnsembleRetriever(
-        retrievers=[retriever_vectordb, keyword_retriever],
-        weights=[0.5, 0.5]
-    )
 
-def retrieve_and_re_rank(vector_db, query, k=10):
+    # Khởi tạo cross-encoder
     cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
-    ensemble_search = hybrid_search(vector_db,query, k)
 
-    docs_rel = ensemble_search.get_relevant_documents(query)
-
-    pairs = [[query, doc] for doc in docs_rel]
-
-    rerank_scores = cross_encoder.predict(pairs)
-
-    ranked_docs = sorted(zip(docs_rel, rerank_scores), key=lambda x: x[1], reverse=True)
-    
-    results = [doc for doc, _ in ranked_docs]
-    scores = [score for _, score in ranked_docs]
-    
-    return results, scores
+    # Tạo và trả về retriever với re-ranking
+    return ReRankerRetriever(
+        ensemble_retriever=EnsembleRetriever(
+            retrievers=[retriever_vectordb, keyword_retriever],
+            weights=[0.8, 0.2]
+        ),
+        reranker=cross_encoder,
+        top_k=k*3,
+        rerank_k=k   
+    )

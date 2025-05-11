@@ -12,7 +12,6 @@ import json
 import time
 import streamlit as st
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
-from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda
 # import uuid
@@ -46,7 +45,7 @@ with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
 llm = ChatOpenAI(model=MODEL, temperature=0, api_key=open_ai_key)
 # llm = ChatGroq(model = "llama3-70b-8192", temperature=0,api_key = groq_api_key)
 
-
+# Tạo ngữ cảnh cho prompts
 def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
