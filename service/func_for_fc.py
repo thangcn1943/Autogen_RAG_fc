@@ -34,11 +34,13 @@ def rag_doctor_info(query: str):
     return ensemble_retriever
 
 def qa_medical(query: str):
+    # Thêm post retrieval 
     medical_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/faiss/qa_document', embeddings, allow_dangerous_deserialization=True)
     ensemble_retriever = hybrid_search(medical_info,query,10)
     return ensemble_retriever
 
 def qa_symptom(query: str):
+    # Thêm post retrieval 
     medical_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/faiss/symptoms', embeddings, allow_dangerous_deserialization=True)
     ensemble_retriever = hybrid_search(medical_info,query,10)
     return ensemble_retriever
@@ -61,8 +63,9 @@ def book_appointment(name=None, phone=None, date=None, time=None, specialty=None
             "date": date,
             "time": time,
             "specialty": specialty
-        }.items() if param_value is None
+        }.items() if param_value is None or param_value == "" or param_value == "NaN"
     ]
+
     
     # Nếu thiếu tham số, trả về yêu cầu điền thông tin
     if missing_params:

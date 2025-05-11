@@ -6,15 +6,15 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_openai import ChatOpenAI
-from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment, qa_medical, qa_symptom
+from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment
 import os
 import json
 import time
 import streamlit as st
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
-from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda
+from langchain_openai import ChatOpenAI
 # import uuid
 import atexit
 from service.message_stored import load_session_history, get_db, save_message
@@ -22,11 +22,10 @@ from service.message_stored import load_session_history, get_db, save_message
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
 # groq_api_key = os.getenv("GROQ_API_KEY")
-MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
 EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
-session_id = 'thangcn1943'
+session_id = 'thangcn1111'
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -43,9 +42,19 @@ atexit.register(save_all_sessions)
 with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
     function_schema = json.load(f)
 
-llm = ChatOpenAI(model=MODEL, temperature=0, api_key=open_ai_key)
-# llm = ChatGroq(model = "llama3-70b-8192", temperature=0,api_key = groq_api_key)
+tools = [
+    {
+        "type": "function",
+        "function": tool
+    } for tool in function_schema
+]
 
+llm = ChatOpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="dummy",
+    temperature=0.8,
+    model="thang1943/Llama-3.1-8B-Instruct-Medical-RAG",
+)
 
 def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
@@ -76,8 +85,10 @@ def process_llm_function_call(chat_history, user_prompt: str):
     # Gọi LLM với function calling
     response = llm.predict_messages(
         messages,
-        functions=function_schema
+        tools=tools,
+        tool_choice="auto",
     )
+    print(response)
     return response
 
 
