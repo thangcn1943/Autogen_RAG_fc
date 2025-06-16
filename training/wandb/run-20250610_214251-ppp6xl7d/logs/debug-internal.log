@@ -1,0 +1,15 @@
+{"time":"2025-06-10T21:42:51.858994873+07:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/mnt/data1tb/thangcn/datnv2/training/wandb/run-20250610_214251-ppp6xl7d/logs/debug-core.log"}
+{"time":"2025-06-10T21:42:52.285666165+07:00","level":"INFO","msg":"stream: created new stream","id":"ppp6xl7d"}
+{"time":"2025-06-10T21:42:52.285766293+07:00","level":"INFO","msg":"stream: started","id":"ppp6xl7d"}
+{"time":"2025-06-10T21:42:52.285861419+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T21:42:52.285889216+07:00","level":"INFO","msg":"handler: started","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T21:42:52.285966867+07:00","level":"INFO","msg":"sender: started","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T21:42:52.587068948+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-10T22:55:30.120206474+07:00","level":"INFO","msg":"stream: closing","id":"ppp6xl7d"}
+{"time":"2025-06-10T22:55:30.120278093+07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-10T22:55:30.120369861+07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-10T22:55:31.029669064+07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-10T22:55:31.375512925+07:00","level":"INFO","msg":"handler: closed","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T22:55:31.375611594+07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T22:55:31.375642178+07:00","level":"INFO","msg":"sender: closed","stream_id":"ppp6xl7d"}
+{"time":"2025-06-10T22:55:31.375774546+07:00","level":"INFO","msg":"stream: closed","id":"ppp6xl7d"}

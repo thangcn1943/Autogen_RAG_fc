@@ -1,0 +1,53 @@
+  0%|                                                                                                                                                 | 0/3655 [00:00<?, ?it/s]Column 'positive' is at index 0, whereas a column with this name is usually expected at index 1. Note that the column order can be important for some losses, e.g. MultipleNegativesRankingLoss will always consider the first column as the anchor and the second as the positive, regardless of the dataset column names. Consider renaming the columns to match the expected order, e.g.:
+dataset = dataset.select_columns(['anchor', 'positive', 'negative'])
+                                                                                                                                                                               
+{'loss': 5.4251, 'grad_norm': 6.541557312011719, 'learning_rate': 2.704918032786885e-07, 'epoch': 0.14}
+{'loss': 4.9423, 'grad_norm': 14.695751190185547, 'learning_rate': 5.437158469945355e-07, 'epoch': 0.27}
+{'loss': 3.1376, 'grad_norm': 12.260189056396484, 'learning_rate': 8.169398907103825e-07, 'epoch': 0.41}
+{'loss': 1.7192, 'grad_norm': 14.550934791564941, 'learning_rate': 1e-06, 'epoch': 0.55}
+{'loss': 1.3134, 'grad_norm': 13.509105682373047, 'learning_rate': 1e-06, 'epoch': 0.68}
+{'loss': 1.1646, 'grad_norm': 11.425623893737793, 'learning_rate': 1e-06, 'epoch': 0.82}
+{'loss': 1.0756, 'grad_norm': 10.914541244506836, 'learning_rate': 1e-06, 'epoch': 0.96}
+{'eval_dim_768_cosine_accuracy@1': 0.30551497443389336, 'eval_dim_768_cosine_accuracy@3': 0.4525200876552228, 'eval_dim_768_cosine_accuracy@5': 0.5094959824689554, 'eval_dim_768_cosine_accuracy@10': 0.6029948867786705, 'eval_dim_768_cosine_precision@1': 0.30551497443389336, 'eval_dim_768_cosine_precision@3': 0.15084002921840758, 'eval_dim_768_cosine_precision@5': 0.10189919649379109, 'eval_dim_768_cosine_precision@10': 0.06029948867786705, 'eval_dim_768_cosine_recall@1': 0.30551497443389336, 'eval_dim_768_cosine_recall@3': 0.4525200876552228, 'eval_dim_768_cosine_recall@5': 0.5094959824689554, 'eval_dim_768_cosine_recall@10': 0.6029948867786705, 'eval_dim_768_cosine_ndcg@10': 0.44578049122110036, 'eval_dim_768_cosine_mrr@10': 0.396591693044395, 'eval_dim_768_cosine_map@100': 0.40700455910313554, 'eval_runtime': 8.684, 'eval_samples_per_second': 0.0, 'eval_steps_per_second': 0.0, 'epoch': 1.0}
+{'loss': 1.0007, 'grad_norm': 10.347128868103027, 'learning_rate': 1e-06, 'epoch': 1.09}
+{'loss': 0.913, 'grad_norm': 14.168381690979004, 'learning_rate': 1e-06, 'epoch': 1.23}
+{'loss': 0.8702, 'grad_norm': 10.307245254516602, 'learning_rate': 1e-06, 'epoch': 1.37}
+{'loss': 0.8531, 'grad_norm': 12.493765830993652, 'learning_rate': 1e-06, 'epoch': 1.5}
+{'loss': 0.8073, 'grad_norm': 10.7815580368042, 'learning_rate': 1e-06, 'epoch': 1.64}
+{'loss': 0.7416, 'grad_norm': 9.531063079833984, 'learning_rate': 1e-06, 'epoch': 1.78}
+{'loss': 0.7494, 'grad_norm': 8.036662101745605, 'learning_rate': 1e-06, 'epoch': 1.92}
+{'eval_dim_768_cosine_accuracy@1': 0.3462381300219138, 'eval_dim_768_cosine_accuracy@3': 0.49634769905040177, 'eval_dim_768_cosine_accuracy@5': 0.5567932797662527, 'eval_dim_768_cosine_accuracy@10': 0.6446311176040905, 'eval_dim_768_cosine_precision@1': 0.3462381300219138, 'eval_dim_768_cosine_precision@3': 0.1654492330168006, 'eval_dim_768_cosine_precision@5': 0.11135865595325053, 'eval_dim_768_cosine_precision@10': 0.06446311176040906, 'eval_dim_768_cosine_recall@1': 0.3462381300219138, 'eval_dim_768_cosine_recall@3': 0.49634769905040177, 'eval_dim_768_cosine_recall@5': 0.5567932797662527, 'eval_dim_768_cosine_recall@10': 0.6446311176040905, 'eval_dim_768_cosine_ndcg@10': 0.487628540466802, 'eval_dim_768_cosine_mrr@10': 0.43839517606409456, 'eval_dim_768_cosine_map@100': 0.44827363091940925, 'eval_runtime': 9.1746, 'eval_samples_per_second': 0.0, 'eval_steps_per_second': 0.0, 'epoch': 2.0}
+{'loss': 0.7081, 'grad_norm': 11.144543647766113, 'learning_rate': 1e-06, 'epoch': 2.05}
+{'loss': 0.7089, 'grad_norm': 9.01524543762207, 'learning_rate': 1e-06, 'epoch': 2.19}
+{'loss': 0.6497, 'grad_norm': 9.549149513244629, 'learning_rate': 1e-06, 'epoch': 2.33}
+{'loss': 0.6366, 'grad_norm': 8.907423973083496, 'learning_rate': 1e-06, 'epoch': 2.46}
+{'loss': 0.5988, 'grad_norm': 8.792699813842773, 'learning_rate': 1e-06, 'epoch': 2.6}
+{'loss': 0.6006, 'grad_norm': 11.78632640838623, 'learning_rate': 1e-06, 'epoch': 2.74}
+{'loss': 0.5952, 'grad_norm': 11.550456047058105, 'learning_rate': 1e-06, 'epoch': 2.87}
+{'eval_dim_768_cosine_accuracy@1': 0.3696128560993426, 'eval_dim_768_cosine_accuracy@3': 0.5175310445580716, 'eval_dim_768_cosine_accuracy@5': 0.5785244704163623, 'eval_dim_768_cosine_accuracy@10': 0.6652666179693206, 'eval_dim_768_cosine_precision@1': 0.3696128560993426, 'eval_dim_768_cosine_precision@3': 0.17251034818602384, 'eval_dim_768_cosine_precision@5': 0.11570489408327246, 'eval_dim_768_cosine_precision@10': 0.06652666179693206, 'eval_dim_768_cosine_recall@1': 0.3696128560993426, 'eval_dim_768_cosine_recall@3': 0.5175310445580716, 'eval_dim_768_cosine_recall@5': 0.5785244704163623, 'eval_dim_768_cosine_recall@10': 0.6652666179693206, 'eval_dim_768_cosine_ndcg@10': 0.5094920201219815, 'eval_dim_768_cosine_mrr@10': 0.46067326979489154, 'eval_dim_768_cosine_map@100': 0.47025215731654896, 'eval_runtime': 8.7402, 'eval_samples_per_second': 0.0, 'eval_steps_per_second': 0.0, 'epoch': 3.0}
+{'loss': 0.5683, 'grad_norm': 10.500738143920898, 'learning_rate': 1e-06, 'epoch': 3.01}
+{'loss': 0.5409, 'grad_norm': 8.298380851745605, 'learning_rate': 1e-06, 'epoch': 3.15}
+{'loss': 0.5381, 'grad_norm': 10.634607315063477, 'learning_rate': 1e-06, 'epoch': 3.28}
+{'loss': 0.5287, 'grad_norm': 7.587763786315918, 'learning_rate': 1e-06, 'epoch': 3.42}
+{'loss': 0.5136, 'grad_norm': 8.503747940063477, 'learning_rate': 1e-06, 'epoch': 3.56}
+{'loss': 0.5155, 'grad_norm': 10.403777122497559, 'learning_rate': 1e-06, 'epoch': 3.69}
+{'loss': 0.4857, 'grad_norm': 10.09371566772461, 'learning_rate': 1e-06, 'epoch': 3.83}
+{'loss': 0.4967, 'grad_norm': 15.98823070526123, 'learning_rate': 1e-06, 'epoch': 3.97}
+{'eval_dim_768_cosine_accuracy@1': 0.3743608473338203, 'eval_dim_768_cosine_accuracy@3': 0.5279401022644266, 'eval_dim_768_cosine_accuracy@5': 0.5898466033601169, 'eval_dim_768_cosine_accuracy@10': 0.6762235208181154, 'eval_dim_768_cosine_precision@1': 0.3743608473338203, 'eval_dim_768_cosine_precision@3': 0.17598003408814217, 'eval_dim_768_cosine_precision@5': 0.11796932067202337, 'eval_dim_768_cosine_precision@10': 0.06762235208181153, 'eval_dim_768_cosine_recall@1': 0.3743608473338203, 'eval_dim_768_cosine_recall@3': 0.5279401022644266, 'eval_dim_768_cosine_recall@5': 0.5898466033601169, 'eval_dim_768_cosine_recall@10': 0.6762235208181154, 'eval_dim_768_cosine_ndcg@10': 0.5183781583335981, 'eval_dim_768_cosine_mrr@10': 0.4687955088292928, 'eval_dim_768_cosine_map@100': 0.4780111955277248, 'eval_runtime': 9.7858, 'eval_samples_per_second': 0.0, 'eval_steps_per_second': 0.0, 'epoch': 4.0}
+{'loss': 0.4819, 'grad_norm': 7.816727638244629, 'learning_rate': 1e-06, 'epoch': 4.1}
+{'loss': 0.4801, 'grad_norm': 7.388375282287598, 'learning_rate': 1e-06, 'epoch': 4.24}
+{'loss': 0.4528, 'grad_norm': 9.765657424926758, 'learning_rate': 1e-06, 'epoch': 4.38}
+{'loss': 0.4401, 'grad_norm': 7.776474475860596, 'learning_rate': 1e-06, 'epoch': 4.51}
+{'loss': 0.432, 'grad_norm': 7.836214542388916, 'learning_rate': 1e-06, 'epoch': 4.65}
+{'loss': 0.4469, 'grad_norm': 8.59227180480957, 'learning_rate': 1e-06, 'epoch': 4.79}
+{'loss': 0.4433, 'grad_norm': 7.844884872436523, 'learning_rate': 1e-06, 'epoch': 4.92}
+{'eval_dim_768_cosine_accuracy@1': 0.38221329437545654, 'eval_dim_768_cosine_accuracy@3': 0.5405405405405406, 'eval_dim_768_cosine_accuracy@5': 0.602081811541271, 'eval_dim_768_cosine_accuracy@10': 0.6842585829072315, 'eval_dim_768_cosine_precision@1': 0.38221329437545654, 'eval_dim_768_cosine_precision@3': 0.18018018018018014, 'eval_dim_768_cosine_precision@5': 0.12041636230825417, 'eval_dim_768_cosine_precision@10': 0.06842585829072316, 'eval_dim_768_cosine_recall@1': 0.38221329437545654, 'eval_dim_768_cosine_recall@3': 0.5405405405405406, 'eval_dim_768_cosine_recall@5': 0.602081811541271, 'eval_dim_768_cosine_recall@10': 0.6842585829072315, 'eval_dim_768_cosine_ndcg@10': 0.5274698637661885, 'eval_dim_768_cosine_mrr@10': 0.4780295981309505, 'eval_dim_768_cosine_map@100': 0.48728841124041494, 'eval_runtime': 9.7836, 'eval_samples_per_second': 0.0, 'eval_steps_per_second': 0.0, 'epoch': 5.0}
+{'train_runtime': 1651.9351, 'train_samples_per_second': 132.581, 'train_steps_per_second': 2.213, 'train_loss': 1.007004941113181, 'epoch': 5.0}
+events.out.tfevents.1749871842.sotatek-Z590-GAMING-X.209181.0: 100%|██████████████████████████████████████████████████████████████████████| 4.51k/4.51k [00:00<00:00, 14.6kB/s]
+events.out.tfevents.1749871867.sotatek-Z590-GAMING-X.209359.0: 100%|██████████████████████████████████████████████████████████████████████| 18.7k/18.7k [00:00<00:00, 58.9kB/s]
+training_args.bin: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5.75k/5.75k [00:00<00:00, 17.3kB/s]
+model.safetensors: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 540M/540M [00:59<00:00, 9.05MB/s]
+Upload 4 LFS files: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [01:00<00:00, 15.18s/it]
+
+Upload 4 LFS files:  25%|██████████████████████████████                                                                                          | 1/4 [01:00<03:02, 60.70s/it]
+{'dim_768_cosine_accuracy@1': 0.38203067932797663, 'dim_768_cosine_accuracy@3': 0.5405405405405406, 'dim_768_cosine_accuracy@5': 0.602081811541271, 'dim_768_cosine_accuracy@10': 0.6840759678597517, 'dim_768_cosine_precision@1': 0.38203067932797663, 'dim_768_cosine_precision@3': 0.18018018018018014, 'dim_768_cosine_precision@5': 0.1204163623082542, 'dim_768_cosine_precision@10': 0.06840759678597516, 'dim_768_cosine_recall@1': 0.38203067932797663, 'dim_768_cosine_recall@3': 0.5405405405405406, 'dim_768_cosine_recall@5': 0.602081811541271, 'dim_768_cosine_recall@10': 0.6840759678597517, 'dim_768_cosine_ndcg@10': 0.5275338821994703, 'dim_768_cosine_mrr@10': 0.47814612392315214, 'dim_768_cosine_map@100': 0.4874077723837427}

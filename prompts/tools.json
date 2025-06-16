@@ -43,13 +43,13 @@
     },
     {
         "name": "qa_medical",
-        "description": "Answers medical-related questions based on the user's query.",
+        "description": "Answers everyday health-related questions based on the user's query.",
         "parameters": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "The medical-related question the user is asking."
+                    "description": "The everyday health-related question the user is asking, typically about personal health concerns."
                 }
             },
             "required": ["query"]
@@ -57,18 +57,18 @@
     },
     {
         "name": "qa_symptom",
-        "description": "Answers questions related to symptoms based on the user's query.",
+        "description": "Answers questions related to symptoms of diseases, the condition of a disease, and how to prevent it.",
         "parameters": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "The symptom or condition the user is asking about."
+                    "description": "The question regarding symptoms of a disease, its identification, or how to prevent it."
                 }
             },
             "required": ["query"]
         }
-    },  
+    },      
     {
         "name": "book_appointment",
         "description": "Books an appointment for a user with specified details.",

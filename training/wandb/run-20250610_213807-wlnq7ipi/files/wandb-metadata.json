@@ -1,0 +1,16 @@
+{
+  "os": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-06-10T14:38:07.695819Z",
+  "program": "/mnt/data1tb/thangcn/datnv2/training/fine_tune_lora_embed.py",
+  "codePath": "training/fine_tune_lora_embed.py",
+  "git": {
+    "remote": "https://github.com/thangcn1943/Autogen_RAG_fc.git",
+    "commit": "df2c6c433d0bc2fbc3a381017cd0296e5fe43e45"
+  },
+  "email": "thang19431@gmail.com",
+  "root": "/mnt/data1tb/thangcn/datnv2/training",
+  "host": "sotatek-Z590-GAMING-X",
+  "executable": "/home/duyhoang/miniconda3/envs/thangcn/bin/python3",
+  "codePathLocal": "fine_tune_lora_embed.py"
+}

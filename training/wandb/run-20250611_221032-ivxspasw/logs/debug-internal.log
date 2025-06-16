@@ -1,0 +1,15 @@
+{"time":"2025-06-11T22:10:32.484591168+07:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/mnt/data1tb/thangcn/datnv2/training/wandb/run-20250611_221032-ivxspasw/logs/debug-core.log"}
+{"time":"2025-06-11T22:10:32.913853667+07:00","level":"INFO","msg":"stream: created new stream","id":"ivxspasw"}
+{"time":"2025-06-11T22:10:32.913919292+07:00","level":"INFO","msg":"stream: started","id":"ivxspasw"}
+{"time":"2025-06-11T22:10:32.91401535+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:32.914093423+07:00","level":"INFO","msg":"handler: started","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:32.914188753+07:00","level":"INFO","msg":"sender: started","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:33.262785473+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-11T22:10:35.730174696+07:00","level":"INFO","msg":"stream: closing","id":"ivxspasw"}
+{"time":"2025-06-11T22:10:35.730239253+07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-11T22:10:35.730416559+07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-11T22:10:36.560327435+07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-11T22:10:36.95500148+07:00","level":"INFO","msg":"handler: closed","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:36.955076239+07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:36.955108173+07:00","level":"INFO","msg":"sender: closed","stream_id":"ivxspasw"}
+{"time":"2025-06-11T22:10:36.955207831+07:00","level":"INFO","msg":"stream: closed","id":"ivxspasw"}

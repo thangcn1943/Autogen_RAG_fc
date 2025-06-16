@@ -1,5 +1,5 @@
 import torch
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, models
 from sentence_transformers.evaluation import (
     InformationRetrievalEvaluator,
     SequentialEvaluator,
@@ -7,7 +7,7 @@ from sentence_transformers.evaluation import (
 from sentence_transformers.util import cos_sim
 from datasets import load_dataset, concatenate_datasets
 from sentence_transformers import SentenceTransformerModelCardData, SentenceTransformer
-from sentence_transformers.losses import MatryoshkaLoss, MultipleNegativesRankingLoss
+from sentence_transformers.losses import MatryoshkaLoss, MultipleNegativesRankingLoss, OnlineContrastiveLoss, ContrastiveLoss, GISTEmbedLoss, TripletLoss
 from sentence_transformers import SentenceTransformerTrainingArguments
 from sentence_transformers.training_args import BatchSamplers
 
@@ -50,22 +50,30 @@ ir_evaluator = InformationRetrievalEvaluator(
     truncate_dim=768, 
     score_functions={"cosine": cos_sim},
 )
-model_id = 'intfloat/multilingual-e5-large'
+# model_id = 'intfloat/multilingual-e5-large'
 
-model = SentenceTransformer(
-    model_id,
-    device="cuda" if torch.cuda.is_available() else "cpu",
-    model_kwargs={"attn_implementation": "sdpa"},
-)
+# model = SentenceTransformer(
+#     model_id,
+#     device="cuda" if torch.cuda.is_available() else "cpu",
+#     model_kwargs={"attn_implementation": "sdpa"},
+# )
+transformer = models.Transformer("vinai/phobert-base-v2", max_seq_length=256,)
+pooling = models.Pooling(transformer.get_word_embedding_dimension(), pooling_mode="mean", 
+                                pooling_mode_mean_tokens=True,
+                                pooling_mode_cls_token=False,
+                                pooling_mode_max_tokens=False)
+
+model = SentenceTransformer(modules=[transformer, pooling],)
 inner_train_loss = MultipleNegativesRankingLoss(model)
 
-print(ir_evaluator(model))
+# print(ir_evaluator(model))
+
 args = SentenceTransformerTrainingArguments(
-    output_dir="/mnt/data1tb/thangcn/datnv2/models/embed/multilingual-e5-large-v2", 
+    output_dir="/mnt/data1tb/thangcn/datnv2/models/embed/phobert-base-v2-tloss", 
     num_train_epochs=5,                       
-    per_device_train_batch_size=5,            
+    per_device_train_batch_size=60,            
     gradient_accumulation_steps=1,          
-    per_device_eval_batch_size=1,             
+    per_device_eval_batch_size=60,            
     warmup_ratio=0.1,                          
     learning_rate=1e-6,                        
     lr_scheduler_type="constant_with_warmup",                
@@ -75,7 +83,7 @@ args = SentenceTransformerTrainingArguments(
     batch_sampler=BatchSamplers.NO_DUPLICATES, 
     eval_strategy="epoch",                  
     save_strategy="epoch",                
-    logging_steps=10,                       
+    logging_steps=100,                       
     save_total_limit=3,               
     load_best_model_at_end=True,               
     metric_for_best_model="eval_dim_768_cosine_ndcg@10", 
@@ -85,7 +93,7 @@ trainer = SentenceTransformerTrainer(
     model=model,
     args=args, 
     train_dataset=train_dataset.select_columns(
-        ["positive", "query"]
+        ["query", "positive"]
     ),
     loss= inner_train_loss,
     evaluator= ir_evaluator
@@ -94,7 +102,7 @@ trainer = SentenceTransformerTrainer(
 trainer.train()
 
 trainer.save_model()
-trainer.push_to_hub('multilingual-e5-large-v2')
+trainer.push_to_hub('phobert-base-v2-tloss')
 fine_tuned_model = SentenceTransformer(
     args.output_dir, device="cuda" if torch.cuda.is_available() else "cpu"
 )

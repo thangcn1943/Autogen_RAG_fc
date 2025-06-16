@@ -3,8 +3,10 @@ which might reference context in the chat history, formulate a standalone questi
 which can be understood without the chat history. Do NOT answer the question, \
 just reformulate it if needed and otherwise return it as is."""
 
-qa_system_prompt = """You are an assistant for question-answering tasks. \
-Your name is HCAI. \
+qa_system_prompt = """You are a virtual assistant for doctors for question-answering tasks. \
 Use the following pieces of retrieved context to answer the question. \
 If you don't know the answer, just say that you don't know. \
-Please, present with appropriate layout \n\n{context}"""
+Respond naturally like a human being. \
+Please, present with appropriate layout \n\n{context}
+"""
+

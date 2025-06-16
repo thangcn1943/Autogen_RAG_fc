@@ -17,16 +17,23 @@ from langchain_core.runnables import RunnableLambda
 # import uuid
 import atexit
 from service.message_stored import load_session_history, get_db, save_message
+from datetime import datetime
+
+now = datetime.now()
+
+current_date = now.strftime("%-m-%-d-%y")
+current_time = now.strftime("%H:%M:%S")   
+
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
 # groq_api_key = os.getenv("GROQ_API_KEY")
 MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
-EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
+EMBED_MODEL = "thang1943/multilingual-e5-large-v2" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
-session_id = 'thangcn1943'
-
+session_id = 'thangngocabc'
+# session_id = 'thangcn1943'
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
         store[session_id] = load_session_history(session_id)
@@ -35,14 +42,14 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 def save_all_sessions():
     for session_id, chat_history in store.items():
         for message in chat_history.messages:
-            save_message(session_id, message["role"], message["content"])
+            save_message(session_id, message.type, message.content)
 
 atexit.register(save_all_sessions)
 
 with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
     function_schema = json.load(f)
 
-llm = ChatOpenAI(model=MODEL, temperature=0, api_key=open_ai_key)
+llm = ChatOpenAI(model=MODEL, temperature=0.3, api_key=open_ai_key)
 # llm = ChatGroq(model = "llama3-70b-8192", temperature=0,api_key = groq_api_key)
 
 # Tạo ngữ cảnh cho prompts
@@ -66,17 +73,22 @@ contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_
 
 def process_llm_function_call(chat_history, user_prompt: str):
     messages = []
-    for msg in chat_history.messages:
+    for msg in chat_history.messages[max(-len(chat_history.messages), -3):]:
         messages.append(msg)
     # Thêm câu hỏi mới nhất
     messages.append(
-        {"role": "user", "content": user_prompt}
+        {"role": 'system', 'content': f'Your name is HCAI. Current datetime is: {current_time}, {current_date}'},
     ) 
+    messages.append(
+        {"role": "user", "content": user_prompt}
+    )
     # Gọi LLM với function calling
     response = llm.predict_messages(
         messages,
         functions=function_schema
     )
+    print(response)
+    print('-' * 100)
     return response
 
 
@@ -129,7 +141,7 @@ def main():
         with st.chat_message("user"):
             st.markdown(user_prompt)
         r = process_llm_function_call(load_session_history(session_id), user_prompt)
-        print(r)
+        # print(r)
         answer = None
         Is_call_function = False
         # Kiểm tra xem có function_call trong response không
@@ -153,7 +165,9 @@ def main():
                 save_message(session_id, "assistant", function_response)
                 answer = function_response
             else:
-                history_aware_retriever = create_history_aware_retriever(llm, function_response, contextualize_q_prompt)
+                runnable_retriever = RunnableLambda(function_response.get_relevant_documents)
+
+                history_aware_retriever = create_history_aware_retriever(llm, runnable_retriever, contextualize_q_prompt)
 
                 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
@@ -169,11 +183,11 @@ def main():
                     output_messages_key="answer",
                 )
 
-                history_conversation = f"""
-                    History conversation:\n
-                    """
-                for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
-                    history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
+                # history_conversation = f"""
+                #     History conversation:\n
+                #     """
+                # for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
+                #     history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
 
                 def invoke_and_save(session_id, input_text):
 
@@ -181,18 +195,25 @@ def main():
                     save_message(session_id, "user", input_text)
                     
                     result = conversational_rag_chain.invoke(
-                        {"input": history_conversation + '\nQuery: ' + input_text},
+                        # {"input": history_conversation + '\nQuery: ' + input_text},
+                        {"input": f"Current datetime: {current_time}, {current_date} " + input_text},
                         config={"configurable": {"session_id": session_id}}
-                    )["answer"]
+                    )
+                    # print(result)
+                    # print('-' * 100)
                     # Save the AI answer with role "ai"
-                    save_message(session_id, "assistant", result)
-                    return result
+                    save_message(session_id, "assistant", result['answer'])
+                    return result["answer"]
 
                 answer = invoke_and_save(session_id, user_prompt)
+                # print(answer)
+                # print('-'* 100)
         else:
             save_message(session_id, "user", user_prompt)
             save_message(session_id, "assistant", function_response)
             answer = function_response
+            # print(answer)
+            # print('-' * 100)
         
         with st.chat_message("assistant"):
             full_response = stream_response(answer)

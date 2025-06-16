@@ -1,0 +1,34 @@
+  0%|                                                                                                                                                | 0/43805 [00:00<?, ?it/s]Column 'positive' is at index 0, whereas a column with this name is usually expected at index 1. Note that the column order can be important for some losses, e.g. MultipleNegativesRankingLoss will always consider the first column as the anchor and the second as the positive, regardless of the dataset column names. Consider renaming the columns to match the expected order, e.g.:
+dataset = dataset.select_columns(['anchor', 'positive', 'negative'])
+  1%|▊                                                                                                                                   | 255/43805 [00:25<1:12:26, 10.02it/s]Traceback (most recent call last):
+{'loss': 0.7079, 'grad_norm': 4.17869234085083, 'learning_rate': 2.2597580461081945e-08, 'epoch': 0.01}
+{'loss': 0.697, 'grad_norm': 3.5515213012695312, 'learning_rate': 4.5423419310659664e-08, 'epoch': 0.02}
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_lora_embed.py", line 106, in <module>
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2593, in _inner_training_loop
+    _grad_norm = self.accelerator.clip_grad_norm_(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/accelerator.py", line 2510, in clip_grad_norm_
+    return torch.nn.utils.clip_grad_norm_(parameters, max_norm, norm_type=norm_type)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/utils/clip_grad.py", line 34, in _no_grad_wrapper
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/utils/clip_grad.py", line 213, in clip_grad_norm_
+    parameters = list(parameters)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2631, in parameters
+    yield param
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_lora_embed.py", line 106, in <module>
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2593, in _inner_training_loop
+    _grad_norm = self.accelerator.clip_grad_norm_(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/accelerator.py", line 2510, in clip_grad_norm_
+    return torch.nn.utils.clip_grad_norm_(parameters, max_norm, norm_type=norm_type)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/utils/clip_grad.py", line 34, in _no_grad_wrapper
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/utils/clip_grad.py", line 213, in clip_grad_norm_
+    parameters = list(parameters)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2631, in parameters
+    yield param
+KeyboardInterrupt

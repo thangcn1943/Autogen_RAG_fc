@@ -1,0 +1,16 @@
+  1%|▊                                                                                                                                                    | 64/10955 [00:12<33:19,  5.45it/s]Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 152, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2565, in _inner_training_loop
+    and (torch.isnan(tr_loss_step) or torch.isinf(tr_loss_step))
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 152, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2565, in _inner_training_loop
+    and (torch.isnan(tr_loss_step) or torch.isinf(tr_loss_step))
+KeyboardInterrupt

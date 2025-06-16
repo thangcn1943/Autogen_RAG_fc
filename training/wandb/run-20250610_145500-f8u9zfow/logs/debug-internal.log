@@ -1,0 +1,10 @@
+{"time":"2025-06-10T14:55:00.856694721+07:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/mnt/data1tb/thangcn/datnv2/training/wandb/run-20250610_145500-f8u9zfow/logs/debug-core.log"}
+{"time":"2025-06-10T14:55:01.27311271+07:00","level":"INFO","msg":"stream: created new stream","id":"f8u9zfow"}
+{"time":"2025-06-10T14:55:01.273137642+07:00","level":"INFO","msg":"stream: started","id":"f8u9zfow"}
+{"time":"2025-06-10T14:55:01.273161705+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"f8u9zfow"}
+{"time":"2025-06-10T14:55:01.273164975+07:00","level":"INFO","msg":"handler: started","stream_id":"f8u9zfow"}
+{"time":"2025-06-10T14:55:01.273171583+07:00","level":"INFO","msg":"sender: started","stream_id":"f8u9zfow"}
+{"time":"2025-06-10T14:55:01.626431032+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-10T17:19:15.890705116+07:00","level":"INFO","msg":"stream: closing","id":"f8u9zfow"}
+{"time":"2025-06-10T17:19:15.890778166+07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-10T17:19:15.890887584+07:00","level":"INFO","msg":"Stopped system monitor"}

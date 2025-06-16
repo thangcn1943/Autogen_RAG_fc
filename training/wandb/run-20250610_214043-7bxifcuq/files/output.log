@@ -1,0 +1,42 @@
+  0%|                                                                                                                                                | 0/43805 [00:00<?, ?it/s]Column 'positive' is at index 0, whereas a column with this name is usually expected at index 1. Note that the column order can be important for some losses, e.g. MultipleNegativesRankingLoss will always consider the first column as the anchor and the second as the positive, regardless of the dataset column names. Consider renaming the columns to match the expected order, e.g.:
+dataset = dataset.select_columns(['anchor', 'positive', 'negative'])
+  1%|█▎                                                                                                                                  | 433/43805 [00:54<1:32:55,  7.78it/s]Traceback (most recent call last):
+{'loss': 0.5578, 'grad_norm': 17.25677490234375, 'learning_rate': 2.2597580461081945e-08, 'epoch': 0.01}
+{'loss': 0.5149, 'grad_norm': 18.87613868713379, 'learning_rate': 4.5423419310659664e-08, 'epoch': 0.02}
+{'loss': 0.5064, 'grad_norm': 14.096109390258789, 'learning_rate': 6.824925816023738e-08, 'epoch': 0.03}
+{'loss': 0.4643, 'grad_norm': 14.877667427062988, 'learning_rate': 9.107509700981511e-08, 'epoch': 0.05}
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 95, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2560, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3782, in training_step
+    self.accelerator.backward(loss, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/accelerator.py", line 2359, in backward
+    loss.backward(**kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 95, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2560, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3782, in training_step
+    self.accelerator.backward(loss, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/accelerator.py", line 2359, in backward
+    loss.backward(**kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

@@ -1,0 +1,15 @@
+{"time":"2025-06-10T17:20:14.670560842+07:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/mnt/data1tb/thangcn/datnv2/training/wandb/run-20250610_172014-alpegwxi/logs/debug-core.log"}
+{"time":"2025-06-10T17:20:15.063115231+07:00","level":"INFO","msg":"stream: created new stream","id":"alpegwxi"}
+{"time":"2025-06-10T17:20:15.063213169+07:00","level":"INFO","msg":"stream: started","id":"alpegwxi"}
+{"time":"2025-06-10T17:20:15.063320358+07:00","level":"INFO","msg":"sender: started","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:20:15.063307292+07:00","level":"INFO","msg":"writer: Do: started","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:20:15.063405438+07:00","level":"INFO","msg":"handler: started","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:20:15.401373912+07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-10T17:34:43.583818477+07:00","level":"INFO","msg":"stream: closing","id":"alpegwxi"}
+{"time":"2025-06-10T17:34:43.583887669+07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-10T17:34:43.583976123+07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-10T17:34:44.941933393+07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-10T17:34:45.301232137+07:00","level":"INFO","msg":"handler: closed","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:34:45.301310947+07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:34:45.301327204+07:00","level":"INFO","msg":"sender: closed","stream_id":"alpegwxi"}
+{"time":"2025-06-10T17:34:45.30148191+07:00","level":"INFO","msg":"stream: closed","id":"alpegwxi"}

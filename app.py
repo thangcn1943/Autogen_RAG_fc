@@ -69,7 +69,7 @@ def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)     
 
-# su ly function calling
+# xu ly function calling
 def process_llm_function_call(chat_history, user_prompt: str):
     messages = []
     for msg in chat_history.messages:

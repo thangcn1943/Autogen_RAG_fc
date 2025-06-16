@@ -1,0 +1,200 @@
+  0%|                                                                                                                                                              | 0/43805 [00:00<?, ?it/s]Column 'positive' is at index 0, whereas a column with this name is usually expected at index 1. Note that the column order can be important for some losses, e.g. MultipleNegativesRankingLoss will always consider the first column as the anchor and the second as the positive, regardless of the dataset column names. Consider renaming the columns to match the expected order, e.g.:
+dataset = dataset.select_columns(['anchor', 'positive', 'negative'])
+                                                                                                                                                                                             
+{'loss': 0.058, 'grad_norm': 7.227672576904297, 'learning_rate': 2.0543254964619948e-09, 'epoch': 0.0}
+{'loss': 0.0739, 'grad_norm': 14.05183219909668, 'learning_rate': 4.336909381419767e-09, 'epoch': 0.0}
+{'loss': 0.044, 'grad_norm': 6.979666233062744, 'learning_rate': 6.619493266377539e-09, 'epoch': 0.0}
+{'loss': 0.0632, 'grad_norm': 2.4640326499938965, 'learning_rate': 8.902077151335311e-09, 'epoch': 0.0}
+{'loss': 0.056, 'grad_norm': 0.3725355565547943, 'learning_rate': 1.1184661036293082e-08, 'epoch': 0.01}
+{'loss': 0.0549, 'grad_norm': 1.3690303564071655, 'learning_rate': 1.3467244921250857e-08, 'epoch': 0.01}
+{'loss': 0.0873, 'grad_norm': 7.576272010803223, 'learning_rate': 1.5749828806208626e-08, 'epoch': 0.01}
+{'loss': 0.0515, 'grad_norm': 7.75258207321167, 'learning_rate': 1.80324126911664e-08, 'epoch': 0.01}
+{'loss': 0.0523, 'grad_norm': 0.3764641284942627, 'learning_rate': 2.031499657612417e-08, 'epoch': 0.01}
+{'loss': 0.0741, 'grad_norm': 9.456984519958496, 'learning_rate': 2.2597580461081945e-08, 'epoch': 0.01}
+{'loss': 0.0375, 'grad_norm': 0.7352035641670227, 'learning_rate': 2.4880164346039718e-08, 'epoch': 0.01}
+{'loss': 0.0463, 'grad_norm': 1.5295546054840088, 'learning_rate': 2.7162748230997487e-08, 'epoch': 0.01}
+{'loss': 0.0678, 'grad_norm': 0.14545583724975586, 'learning_rate': 2.944533211595526e-08, 'epoch': 0.01}
+{'loss': 0.0288, 'grad_norm': 4.391137599945068, 'learning_rate': 3.172791600091303e-08, 'epoch': 0.02}
+{'loss': 0.0478, 'grad_norm': 6.924503326416016, 'learning_rate': 3.4010499885870806e-08, 'epoch': 0.02}
+{'loss': 0.0863, 'grad_norm': 9.266733169555664, 'learning_rate': 3.629308377082858e-08, 'epoch': 0.02}
+{'loss': 0.1214, 'grad_norm': 1.850541114807129, 'learning_rate': 3.8575667655786345e-08, 'epoch': 0.02}
+{'loss': 0.056, 'grad_norm': 4.975207805633545, 'learning_rate': 4.085825154074412e-08, 'epoch': 0.02}
+{'loss': 0.0492, 'grad_norm': 9.461029052734375, 'learning_rate': 4.314083542570189e-08, 'epoch': 0.02}
+{'loss': 0.0834, 'grad_norm': 0.8530844449996948, 'learning_rate': 4.5423419310659664e-08, 'epoch': 0.02}
+{'loss': 0.0365, 'grad_norm': 1.3932733535766602, 'learning_rate': 4.7706003195617436e-08, 'epoch': 0.02}
+{'loss': 0.0322, 'grad_norm': 1.1924751996994019, 'learning_rate': 4.998858708057521e-08, 'epoch': 0.03}
+{'loss': 0.055, 'grad_norm': 0.6637455821037292, 'learning_rate': 5.227117096553298e-08, 'epoch': 0.03}
+{'loss': 0.0287, 'grad_norm': 1.6464792490005493, 'learning_rate': 5.4553754850490755e-08, 'epoch': 0.03}
+{'loss': 0.0451, 'grad_norm': 3.0141708850860596, 'learning_rate': 5.683633873544853e-08, 'epoch': 0.03}
+{'loss': 0.05, 'grad_norm': 0.8880599737167358, 'learning_rate': 5.9118922620406294e-08, 'epoch': 0.03}
+{'loss': 0.0338, 'grad_norm': 1.5812993049621582, 'learning_rate': 6.140150650536407e-08, 'epoch': 0.03}
+{'loss': 0.1098, 'grad_norm': 0.462649941444397, 'learning_rate': 6.368409039032185e-08, 'epoch': 0.03}
+{'loss': 0.0691, 'grad_norm': 1.8504259586334229, 'learning_rate': 6.596667427527961e-08, 'epoch': 0.03}
+{'loss': 0.0747, 'grad_norm': 4.486460208892822, 'learning_rate': 6.824925816023738e-08, 'epoch': 0.03}
+{'loss': 0.0469, 'grad_norm': 1.0183848142623901, 'learning_rate': 7.053184204519516e-08, 'epoch': 0.04}
+{'loss': 0.0194, 'grad_norm': 2.1781656742095947, 'learning_rate': 7.281442593015292e-08, 'epoch': 0.04}
+{'loss': 0.0618, 'grad_norm': 1.404369831085205, 'learning_rate': 7.50970098151107e-08, 'epoch': 0.04}
+{'loss': 0.0453, 'grad_norm': 1.8054147958755493, 'learning_rate': 7.737959370006847e-08, 'epoch': 0.04}
+{'loss': 0.051, 'grad_norm': 2.9177701473236084, 'learning_rate': 7.966217758502625e-08, 'epoch': 0.04}
+{'loss': 0.0683, 'grad_norm': 18.0147647857666, 'learning_rate': 8.194476146998403e-08, 'epoch': 0.04}
+{'loss': 0.03, 'grad_norm': 1.7442816495895386, 'learning_rate': 8.42273453549418e-08, 'epoch': 0.04}
+{'loss': 0.0241, 'grad_norm': 0.966191291809082, 'learning_rate': 8.650992923989956e-08, 'epoch': 0.04}
+{'loss': 0.0281, 'grad_norm': 5.129748821258545, 'learning_rate': 8.879251312485733e-08, 'epoch': 0.04}
+{'loss': 0.0694, 'grad_norm': 5.440629482269287, 'learning_rate': 9.107509700981511e-08, 'epoch': 0.05}
+{'loss': 0.0539, 'grad_norm': 1.6231592893600464, 'learning_rate': 9.335768089477287e-08, 'epoch': 0.05}
+{'loss': 0.0446, 'grad_norm': 1.448313593864441, 'learning_rate': 9.564026477973065e-08, 'epoch': 0.05}
+{'loss': 0.0616, 'grad_norm': 0.7233417630195618, 'learning_rate': 9.792284866468842e-08, 'epoch': 0.05}
+{'loss': 0.03, 'grad_norm': 0.37586647272109985, 'learning_rate': 1.002054325496462e-07, 'epoch': 0.05}
+{'loss': 0.0649, 'grad_norm': 10.58755111694336, 'learning_rate': 1.0248801643460397e-07, 'epoch': 0.05}
+{'loss': 0.0617, 'grad_norm': 4.377842426300049, 'learning_rate': 1.0477060031956175e-07, 'epoch': 0.05}
+{'loss': 0.0488, 'grad_norm': 2.9224445819854736, 'learning_rate': 1.0705318420451951e-07, 'epoch': 0.05}
+{'loss': 0.0736, 'grad_norm': 9.35992431640625, 'learning_rate': 1.0933576808947728e-07, 'epoch': 0.05}
+{'loss': 0.047, 'grad_norm': 3.4760587215423584, 'learning_rate': 1.1161835197443506e-07, 'epoch': 0.06}
+{'loss': 0.0416, 'grad_norm': 5.070140361785889, 'learning_rate': 1.1390093585939282e-07, 'epoch': 0.06}
+{'loss': 0.0441, 'grad_norm': 10.45736026763916, 'learning_rate': 1.161835197443506e-07, 'epoch': 0.06}
+{'loss': 0.0606, 'grad_norm': 7.05715799331665, 'learning_rate': 1.1846610362930837e-07, 'epoch': 0.06}
+{'loss': 0.0352, 'grad_norm': 1.3851611614227295, 'learning_rate': 1.2074868751426615e-07, 'epoch': 0.06}
+{'loss': 0.0491, 'grad_norm': 13.62082290649414, 'learning_rate': 1.230312713992239e-07, 'epoch': 0.06}
+{'loss': 0.0461, 'grad_norm': 12.366934776306152, 'learning_rate': 1.2531385528418168e-07, 'epoch': 0.06}
+{'loss': 0.062, 'grad_norm': 17.631725311279297, 'learning_rate': 1.2759643916913946e-07, 'epoch': 0.06}
+{'loss': 0.0633, 'grad_norm': 6.241020202636719, 'learning_rate': 1.2987902305409724e-07, 'epoch': 0.07}
+{'loss': 0.0611, 'grad_norm': 2.5821309089660645, 'learning_rate': 1.3216160693905502e-07, 'epoch': 0.07}
+{'loss': 0.0159, 'grad_norm': 1.6047972440719604, 'learning_rate': 1.344441908240128e-07, 'epoch': 0.07}
+{'loss': 0.0578, 'grad_norm': 8.25146198272705, 'learning_rate': 1.3672677470897053e-07, 'epoch': 0.07}
+{'loss': 0.0498, 'grad_norm': 5.988339424133301, 'learning_rate': 1.390093585939283e-07, 'epoch': 0.07}
+{'loss': 0.032, 'grad_norm': 6.911078453063965, 'learning_rate': 1.4129194247888608e-07, 'epoch': 0.07}
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 89, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2560, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3736, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/trainer.py", line 405, in compute_loss
+    loss = loss_fn(features, labels)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in forward
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in <listcomp>
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 690, in forward
+    input = module(input, **module_kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/models/Transformer.py", line 442, in forward
+    output_states = self.auto_model(**trans_features, **kwargs, return_dict=False)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 979, in forward
+    encoder_outputs = self.encoder(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 632, in forward
+    layer_outputs = layer_module(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 521, in forward
+    self_attention_outputs = self.attention(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 448, in forward
+    self_outputs = self.self(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 371, in forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 90.00 MiB. GPU 0 has a total capacity of 23.65 GiB of which 50.31 MiB is free. Including non-PyTorch memory, this process has 23.56 GiB memory in use. Of the allocated memory 22.88 GiB is allocated by PyTorch, and 230.29 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/mnt/data1tb/thangcn/datnv2/training/fine_tune_embed.py", line 89, in <module>
+    trainer.train()
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 2560, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/trainer.py", line 3736, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/trainer.py", line 405, in compute_loss
+    loss = loss_fn(features, labels)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in forward
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/losses/MultipleNegativesRankingLoss.py", line 103, in <listcomp>
+    embeddings = [self.model(sentence_feature)["sentence_embedding"] for sentence_feature in sentence_features]
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/SentenceTransformer.py", line 690, in forward
+    input = module(input, **module_kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/sentence_transformers/models/Transformer.py", line 442, in forward
+    output_states = self.auto_model(**trans_features, **kwargs, return_dict=False)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 979, in forward
+    encoder_outputs = self.encoder(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 632, in forward
+    layer_outputs = layer_module(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 521, in forward
+    self_attention_outputs = self.attention(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 448, in forward
+    self_outputs = self.self(
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/duyhoang/miniconda3/envs/thangcn/lib/python3.10/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 371, in forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 90.00 MiB. GPU 0 has a total capacity of 23.65 GiB of which 50.31 MiB is free. Including non-PyTorch memory, this process has 23.56 GiB memory in use. Of the allocated memory 22.88 GiB is allocated by PyTorch, and 230.29 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

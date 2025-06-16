@@ -1,0 +1,1 @@
+streamlit run opensource_main.py --server.fileWatcherType none

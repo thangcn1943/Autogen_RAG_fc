@@ -6,7 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_openai import ChatOpenAI
-from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment
+from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment, qa_medical, qa_symptom
 import os
 import json
 import time
@@ -18,14 +18,20 @@ from langchain_openai import ChatOpenAI
 # import uuid
 import atexit
 from service.message_stored import load_session_history, get_db, save_message
+from datetime import datetime
+
+now = datetime.now()
+
+current_date = now.strftime("%-m-%-d-%y")
+current_time = now.strftime("%H:%M:%S")   
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
 # groq_api_key = os.getenv("GROQ_API_KEY")
-EMBED_MODEL = "nampham1106/bkcare-embedding" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
+EMBED_MODEL = "thang1943/multilingual-e5-large-v2" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
-session_id = 'thangcn1111'
+session_id = 'thangcn1'
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -53,7 +59,7 @@ llm = ChatOpenAI(
     base_url="http://localhost:8000/v1",
     api_key="dummy",
     temperature=0.8,
-    model="thang1943/Llama-3.1-8B-Instruct-Medical-RAG",
+    model="thang1943/Llama-3.1-8B-instruction-final",
 )
 
 def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
@@ -145,11 +151,11 @@ def main():
         answer = None
         Is_call_function = False
         # Kiểm tra xem có function_call trong response không
-        if 'function_call' in r.additional_kwargs:
+        if 'tool_calls' in r.additional_kwargs:
             available_functions = {tool['name']: globals()[tool['name']] 
                                 for tool in function_schema}
-            function_args = json.loads(r.additional_kwargs['function_call']['arguments'])
-            function_name = r.additional_kwargs['function_call']['name']
+            function_args = json.loads(r.additional_kwargs['tool_calls'][0]['function']['arguments'])
+            function_name = r.additional_kwargs['tool_calls'][0]['function']['name']
             print(f"Function name: {function_name}")
             print(f"Function args: {function_args}")
             function_to_call = available_functions.get(function_name)
@@ -165,7 +171,9 @@ def main():
                 save_message(session_id, "assistant", function_response)
                 answer = function_response
             else:
-                history_aware_retriever = create_history_aware_retriever(llm, function_response, contextualize_q_prompt)
+                runnable_retriever = RunnableLambda(function_response.get_relevant_documents)
+
+                history_aware_retriever = create_history_aware_retriever(llm, runnable_retriever, contextualize_q_prompt)
 
                 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
@@ -180,12 +188,11 @@ def main():
                     history_messages_key="chat_history",
                     output_messages_key="answer",
                 )
-
-                history_conversation = f"""
-                    History conversation:\n
-                    """
-                for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
-                    history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
+                # history_conversation = f"""
+                #     History conversation:\n
+                #     """
+                # for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
+                #     history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
 
                 def invoke_and_save(session_id, input_text):
 
@@ -193,12 +200,15 @@ def main():
                     save_message(session_id, "user", input_text)
                     
                     result = conversational_rag_chain.invoke(
-                        {"input": history_conversation + '\nQuery: ' + input_text},
+                        # {"input": history_conversation + '\nQuery: ' + input_text},
+                        {"input": f"Current datetime: {current_time}, {current_date} " + input_text},
                         config={"configurable": {"session_id": session_id}}
-                    )["answer"]
+                    )
+                    # print(result)
+                    # print('-' * 100)
                     # Save the AI answer with role "ai"
-                    save_message(session_id, "assistant", result)
-                    return result
+                    save_message(session_id, "assistant", result['answer'])
+                    return result["answer"]
 
                 answer = invoke_and_save(session_id, user_prompt)
         else:
