@@ -1,11 +1,11 @@
-import dotenv
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 import os
 from service.search_doc import hybrid_search
 from openai import OpenAI
-
+from service.generate_with_flux import prompt_to_image
+from deep_translator import GoogleTranslator
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 # Lấy các khóa API và mô hình
@@ -17,7 +17,7 @@ client = OpenAI(
 )
 embeddings = HuggingFaceEmbeddings(
     model_name=EMBED_MODEL,
-    model_kwargs={'device': 'cuda'}
+    model_kwargs={'device': 'cpu'}
 )
 
 def rag_service_info(query: str):
@@ -27,7 +27,7 @@ def rag_service_info(query: str):
 
 
 def rag_product_info(query: str):
-    product_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/product_info', embeddings, allow_dangerous_deserialization=True)
+    product_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/product_json_info', embeddings, allow_dangerous_deserialization=True)
     ensemble_retriever = hybrid_search(product_info,query,10)
     return ensemble_retriever
 
@@ -38,32 +38,44 @@ def rag_doctor_info(query: str):
 
 def qa_medical(query: str):
     # Thêm post retrieval
-    response = client.chat.completions.create(
-        model = MODEL,
-        messages = [
-            {'role': 'system', 'content': 'As a medical expert, please provide a detailed response to the following question'},
-            {'role': 'user', 'content': f"{query}"}
-        ],
-        max_tokens = 512
-    ).choices[0].message.content
+    # response = client.chat.completions.create(
+    #     model = MODEL,
+    #     messages = [
+    #         {'role': 'system', 'content': 'As a medical expert, please provide a detailed response to the following question'},
+    #         {'role': 'user', 'content': f"{query}"}
+    #     ],
+    #     max_tokens = 512
+    # ).choices[0].message.content
 
+    result = GoogleTranslator(source='vi', target='en').translate(query)
+    image = prompt_to_image(result, save_previews=True)
+    # print(type(image))
     medical_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/qa_document', embeddings, allow_dangerous_deserialization=True)
-    ensemble_retriever = hybrid_search(medical_info,response,10)
-    return ensemble_retriever
+    ensemble_retriever = hybrid_search(medical_info,query,10)
+    # print('-' * 50)
+    # print(type(ensemble_retriever))
+    return ensemble_retriever, image
 
 def qa_symptom(query: str):
     # Thêm post retrieval
-    response = client.chat.completions.create(
-        model = MODEL,
-        messages = [
-            {'role': 'system', 'content': 'As a medical expert specializing in diagnosing diseases based on clinical signs, please provide an answer to the following question.'},
-            {'role': 'user', 'content': f"{query}"}
-        ],
-        max_tokens = 512
-    ).choices[0].message.content
+    # response = client.chat.completions.create(
+    #     model = MODEL,
+    #     messages = [
+    #         {'role': 'system', 'content': 'As a medical expert specializing in diagnosing diseases based on clinical signs, please provide an answer to the following question.'},
+    #         {'role': 'user', 'content': f"{query}"}
+    #     ],
+    #     max_tokens = 512
+    # ).choices[0].message.content
+
+    result = GoogleTranslator(source='vi', target='en').translate(query)
+    image = prompt_to_image(result, save_previews=True)
+    # print(type(image))
     medical_info = FAISS.load_local('/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/symptoms', embeddings, allow_dangerous_deserialization=True)
-    ensemble_retriever = hybrid_search(medical_info,response,10)
-    return ensemble_retriever
+    ensemble_retriever = hybrid_search(medical_info,query,10)
+    # print('-' * 50)
+    # print(type(ensemble_retriever))
+    return ensemble_retriever, image
+
 
 def book_appointment(name=None, phone=None, date=None, time=None, specialty=None):
     # Danh sách các tham số bắt buộc và mô tả
@@ -113,3 +125,26 @@ def book_appointment(name=None, phone=None, date=None, time=None, specialty=None
     }
     
     return f"🗓️ Đặt hẹn thành công với thông tin"
+
+
+def merge_faiss_stores(query, index_paths):
+    if not index_paths:
+        return None
+    
+    # Load index đầu tiên làm base
+    merged_store = FAISS.load_local(
+        index_paths[0], 
+        embeddings, 
+        allow_dangerous_deserialization=True
+    )
+    
+    # Merge các index còn lại
+    for path in index_paths[1:]:
+        store = FAISS.load_local(
+            path, 
+            embeddings, 
+            allow_dangerous_deserialization=True
+        )
+        merged_store.merge_from(store)
+    ensemble_retriever = hybrid_search(merged_store,query,10)
+    return ensemble_retriever

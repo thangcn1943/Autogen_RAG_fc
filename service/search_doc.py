@@ -18,19 +18,15 @@ class RerankRetriever():
     
     def get_relevant_documents(self, query: str):
         docs = self.ensemble_retriever.get_relevant_documents(query)[:self.top_k]
-        # print(f"Initial docs: {len(docs)}")  # Kiểm tra số lượng docs
-        
+
         pairs = [(query, doc.page_content) for doc in docs]
-        # print(f"First pair sample: {pairs[0][1][:50]}...")  # Xem nội dung có hợp lệ
-        
+    
         rerank_scores = self.rerank_retriever.predict(pairs)
-        # print(f"Scores: {rerank_scores}")  # Kiểm tra điểm re-rank
         
         for doc, score in zip(docs, rerank_scores):
             doc.metadata["rerank_score"] = float(score)
         
         sorted_docs = sorted(docs, key=lambda x: x.metadata["rerank_score"], reverse=True)[:self.rerank_k]
-        # print(f"Final docs: {[d.metadata['rerank_score'] for d in sorted_docs]}")  # Xem điểm cuối cùng
         return sorted_docs
 
 
@@ -56,7 +52,7 @@ def hybrid_search(vectorstore, query: str, k: int) -> RerankRetriever:
     )
 
     # Initialize cross-encoder
-    cross_encoder = CrossEncoder("BAAI/bge-reranker-v2-m3")
+    cross_encoder = CrossEncoder("BAAI/bge-reranker-v2-m3", device = "cpu")
 
     return RerankRetriever(
         ensemble_retriever= ensemble_retriever,
@@ -64,3 +60,4 @@ def hybrid_search(vectorstore, query: str, k: int) -> RerankRetriever:
         top_k=30,
         rerank_k=k
     )
+

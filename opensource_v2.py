@@ -6,7 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_openai import ChatOpenAI
-from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment, qa_medical, qa_symptom
+from service.func_for_fc import rag_doctor_info, rag_product_info, rag_service_info, book_appointment, qa_medical, qa_symptom, merge_faiss_stores
 import os
 import json
 import time
@@ -19,16 +19,27 @@ from langchain_openai import ChatOpenAI
 import atexit
 from service.message_stored import load_session_history, get_db, save_message
 from datetime import datetime
-import re
+
 
 current_datetime = datetime.now().strftime("%H:%M:%S %-m/%-d/%y")
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
 # groq_api_key = os.getenv("GROQ_API_KEY")
+EMBED_MODEL = "thang1943/multilingual-e5-large-v2" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
-session_id = 'thangcn1'
+session_id = 'caongocthang215644'
+
+
+# Sử dụng:
+index_paths = [
+    '/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/service_info',
+    '/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/product_info',
+    '/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/doctor_info',
+    '/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/qa_document',
+    '/mnt/data1tb/thangcn/datnv2/vector_database/FAISS_2/symptoms'
+]
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -41,16 +52,6 @@ def save_all_sessions():
             save_message(session_id, message["role"], message["content"])
 
 atexit.register(save_all_sessions)
-
-with open('/mnt/data1tb/thangcn/datnv2/prompts/tools.json', 'r') as f:
-    function_schema = json.load(f)
-
-tools = [
-    {
-        "type": "function",
-        "function": tool
-    } for tool in function_schema
-]
 
 # from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 # from langchain_community.llms import HuggingFacePipeline
@@ -79,12 +80,12 @@ tools = [
 #     pipeline=pipe
 # )
 
-llm = ChatOpenAI(
-    base_url="http://localhost:8000/v1",
-    api_key="dummy",
-    temperature=0.01,
-    model="Qwen/Qwen3-8B",
-)
+# llm = ChatOpenAI(
+#     base_url="http://localhost:8000/v1",
+#     api_key="dummy",
+#     temperature=0.01,
+#     model="thang1943/Llama-3.1-8B-instruction-final",
+# )
 
 def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
@@ -103,28 +104,6 @@ def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 
 
 contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
-
-def process_llm_function_call(chat_history, user_prompt: str):
-    messages = [{
-        "role": "system",
-        "content": f'MED|{current_datetime}|Your name is HCAI|Respond to medical queries only|For non-medical: "I only handle medical queries"'
-    }]
-
-    for msg in chat_history.messages[max(-len(chat_history.messages), -3):]:
-        messages.append(msg)
-
-    messages.append(
-        {"role": "user", "content": user_prompt}
-    )
-    # Gọi LLM với function calling
-    response = llm.predict_messages(
-        messages,
-        tools=tools,
-        tool_choice="auto",
-    )
-    print(response)
-    return response
-
 
 def display_chat_history():
     for msg in st.session_state.messages:
@@ -157,11 +136,6 @@ def print_retrieved_docs(input_dict):
     # Trả về input_dict nguyên vẹn để tiếp tục xử lý
     return input_dict
 
-def extract_answer(text):
-    match = re.search(r'</think>\s*\n*(.+)', text, re.DOTALL)
-    if match:
-        return match.group(1).strip()
-    return "Không tìm thấy câu trả lời sau thẻ </think>"
 
 def main():
     st.title("THANGCN's AI Assistant")
@@ -179,67 +153,50 @@ def main():
         st.session_state.messages.append({"role": "user", "content": user_prompt})
         with st.chat_message("user"):
             st.markdown(user_prompt)
-        r = process_llm_function_call(load_session_history(session_id), user_prompt)
-        print(r)
-        answer = None
 
-        if 'tool_calls' in r.additional_kwargs:
-            available_functions = {tool['name']: globals()[tool['name']] 
-                                for tool in function_schema}
-            function_args = json.loads(r.additional_kwargs['tool_calls'][0]['function']['arguments'])
-            function_name = r.additional_kwargs['tool_calls'][0]['function']['name']
-            print(f"Function name: {function_name}")
-            print(f"Function args: {function_args}")
-            function_to_call = available_functions.get(function_name)
-            function_response = function_to_call(**function_args)
+        retriever = merge_faiss_stores(user_prompt, index_paths)
 
-            if function_name == "book_appointment":
-                save_message(session_id, "user", user_prompt)
-                save_message(session_id, "assistant", function_response)
-                answer = function_response
-            else:
-                runnable_retriever = RunnableLambda(function_response.get_relevant_documents)
+        runnable_retriever = RunnableLambda(retriever.get_relevant_documents)
 
-                history_aware_retriever = create_history_aware_retriever(llm, runnable_retriever, contextualize_q_prompt)
+        history_aware_retriever = create_history_aware_retriever(llm, runnable_retriever, contextualize_q_prompt)
 
-                question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+        question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
-                rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+        rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
-                rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
+        rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
 
-                conversational_rag_chain = RunnableWithMessageHistory(
-                    rag_chain_with_print,
-                    get_session_history,
-                    input_messages_key="input",
-                    history_messages_key="chat_history",
-                    output_messages_key="answer",
-                )
+        conversational_rag_chain = RunnableWithMessageHistory(
+            rag_chain_with_print,
+            get_session_history,
+            input_messages_key="input",
+            history_messages_key="chat_history",
+            output_messages_key="answer",
+        )
 
-                def invoke_and_save(session_id, input_text):
+        # history_conversation = f"""
+        #     History conversation:\n
+        #     """
+        # for msg in load_session_history(session_id).messages[max(-len(load_session_history(session_id).messages), -3):]:
+        #     history_conversation += f"'role' : '{msg['role']}' , 'content' : ' {msg['content']}' \n"
 
-                    # Save the user question with role "human"
-                    save_message(session_id, "user", input_text)
-                    
-                    result = conversational_rag_chain.invoke(
-                        # {"input": history_conversation + '\nQuery: ' + input_text},
-                        {"input": input_text},
-                        config={"configurable": {"session_id": session_id}}
-                    )
+        def invoke_and_save(session_id, input_text):
 
-                    save_message(session_id, "assistant", result['answer'])
-                    return extract_answer(result["answer"])
+            # Save the user question with role "human"
+            save_message(session_id, "user", input_text)
+            
+            result = conversational_rag_chain.invoke(
+                # {"input": history_conversation + '\nQuery: ' + input_text},
+                {"input": input_text},
+                config={"configurable": {"session_id": session_id}}
+            )
+            # print(result)
+            # print('-' * 100)
+            # Save the AI answer with role "ai"
+            save_message(session_id, "assistant", result['answer'])
+            return result["answer"]
 
-                answer = invoke_and_save(session_id, user_prompt)
-        else:
-            # Xử lý trường hợp không có function call
-            print("Không có function call trong response")
-            function_response = extract_answer(r.content)
-
-            save_message(session_id, "user", user_prompt)
-            save_message(session_id, "assistant", function_response)
-            answer = function_response
-        
+        answer = invoke_and_save(session_id, user_prompt)
         with st.chat_message("assistant"):
             full_response = stream_response(answer)
         

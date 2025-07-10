@@ -1,6 +1,7 @@
 from typing import List, Dict, Any
+from unittest import result
 from langchain_core.runnables.history import RunnableWithMessageHistory
-from prompts.prompt import contextualize_q_system_prompt, qa_system_prompt
+from prompts.prompt import contextualize_q_system_prompt, qa_system_prompt, medical_prompt
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -19,11 +20,7 @@ import atexit
 from service.message_stored import load_session_history, get_db, save_message
 from datetime import datetime
 
-now = datetime.now()
-
-current_date = now.strftime("%-m-%-d-%y")
-current_time = now.strftime("%H:%M:%S")   
-
+current_datetime = datetime.now().strftime("%H:%M:%S %-m/%-d/%y")
 
 load_dotenv('/mnt/data1tb/thangcn/datnv2/.env')
 open_ai_key = os.getenv("OPENAI_API_KEY")
@@ -32,7 +29,7 @@ MODEL = 'gpt-4o' #os.getenv("MODEL", "gpt-4o")
 EMBED_MODEL = "thang1943/multilingual-e5-large-v2" #os.getenv("EMBED_MODEL", "nampham1106/bkcare-embedding")
 
 store = {}
-session_id = 'thangngocabc'
+session_id = 'thangcao1943111'
 # session_id = 'thangcn1943'
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -72,13 +69,15 @@ def create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 contextualize_q_prompt, qa_prompt = create_contextualize_prompt(contextualize_q_system_prompt, qa_system_prompt)
 
 def process_llm_function_call(chat_history, user_prompt: str):
-    messages = []
+
+    messages = [{
+        "role": "system",
+        "content": f'MED|{current_datetime}|Your name is HCAI|Respond to medical queries only|For non-medical: "I only handle medical queries"'
+    }]
+
     for msg in chat_history.messages[max(-len(chat_history.messages), -3):]:
         messages.append(msg)
-    # Thêm câu hỏi mới nhất
-    messages.append(
-        {"role": 'system', 'content': f'Your name is HCAI. Current datetime is: {current_time}, {current_date}'},
-    ) 
+
     messages.append(
         {"role": "user", "content": user_prompt}
     )
@@ -117,11 +116,25 @@ def print_retrieved_docs(input_dict):
     print("\n=== RETRIEVED DOCUMENTS ===")
     for i, doc in enumerate(retrieved_docs):
         print(f"\nDocument {i+1}:")
-        print(f"Source: {doc.metadata.get('source', 'Unknown')}")
+        print(f"image_url: {doc.metadata.get('image_url', 'Unknown')}")
         print(f"Content: {doc.page_content[:200]}...")  # In 200 ký tự đầu tiên
     
-    # Trả về input_dict nguyên vẹn để tiếp tục xử lý
-    return input_dict
+    # Lấy tất cả image_url từ các documents
+    image_urls = [doc.metadata.get('image_url') for doc in retrieved_docs if doc.metadata.get('image_url')]
+    
+    # Trả về cả input_dict và danh sách image_urls
+    return {"output_dict": input_dict, "image_urls": image_urls}
+
+def process_retrieved_docs(output):
+    # Lấy documents đã retrieval
+    retrieved_docs = output.get("context", [])
+    
+    # Lấy tất cả image_url từ các documents
+    image_urls = [doc.metadata.get('image_url') for doc in retrieved_docs if doc.metadata.get('image_url')]
+    
+    # Giữ nguyên cấu trúc output ban đầu và thêm image_urls
+    output["image_urls"] = image_urls
+    return output
 
 
 def main():
@@ -143,7 +156,7 @@ def main():
         r = process_llm_function_call(load_session_history(session_id), user_prompt)
         # print(r)
         answer = None
-        Is_call_function = False
+        image = None
         # Kiểm tra xem có function_call trong response không
         if 'function_call' in r.additional_kwargs:
             available_functions = {tool['name']: globals()[tool['name']] 
@@ -154,12 +167,12 @@ def main():
             print(f"Function args: {function_args}")
             function_to_call = available_functions.get(function_name)
             function_response = function_to_call(**function_args)
-            Is_call_function = True
-        else:
-            # Xử lý trường hợp không có function call
-            print("Không có function call trong response")
-            function_response = r.content
-        if Is_call_function:
+
+            if function_name in ["qa_medical", "qa_symptom"]: 
+                image = function_response[1]
+                function_response = function_response[0]
+                print('image_path:', image)
+
             if function_name == "book_appointment":
                 save_message(session_id, "user", user_prompt)
                 save_message(session_id, "assistant", function_response)
@@ -173,7 +186,8 @@ def main():
 
                 rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
-                rag_chain_with_print = rag_chain | RunnableLambda(print_retrieved_docs)
+                # Sửa chain
+                rag_chain_with_print = rag_chain | RunnableLambda(process_retrieved_docs)
 
                 conversational_rag_chain = RunnableWithMessageHistory(
                     rag_chain_with_print,
@@ -196,19 +210,27 @@ def main():
                     
                     result = conversational_rag_chain.invoke(
                         # {"input": history_conversation + '\nQuery: ' + input_text},
-                        {"input": f"Current datetime: {current_time}, {current_date} " + input_text},
+                        {"input": input_text},
                         config={"configurable": {"session_id": session_id}}
                     )
                     # print(result)
                     # print('-' * 100)
                     # Save the AI answer with role "ai"
-                    save_message(session_id, "assistant", result['answer'])
-                    return result["answer"]
+                    answer = result["answer"]
+                    image_urls = result.get("image_urls", [])
+                    
+                    # Save the AI answer with role "ai"
+                    save_message(session_id, "assistant", answer)
+                    return answer, image_urls
 
-                answer = invoke_and_save(session_id, user_prompt)
+                answer, image = invoke_and_save(session_id, user_prompt)
                 # print(answer)
                 # print('-'* 100)
         else:
+            # Xử lý trường hợp không có function call
+            print("Không có function call trong response")
+            function_response = r.content
+
             save_message(session_id, "user", user_prompt)
             save_message(session_id, "assistant", function_response)
             answer = function_response
@@ -217,6 +239,8 @@ def main():
         
         with st.chat_message("assistant"):
             full_response = stream_response(answer)
+            if image is not None:
+                st.image(image[0])
         
         st.session_state.messages.append({"role": "assistant", "content": full_response})
         
